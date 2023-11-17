@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="EditTextDrawable" parent="Widget.AppCompat.EditText">
+        <item name="passwordToggleEnabled">true</item>
+        <item name="passwordToggleDrawable">@drawable/baseline_remove_red_eye_24</item>
+    </style>
+</resources>
