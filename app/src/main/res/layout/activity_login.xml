@@ -80,6 +80,7 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:inputType="textPassword"
+        android:hint="Password"
         android:backgroundTint="@color/gray"
         android:paddingHorizontal="30dp"
         android:fontFamily="@font/medium"
