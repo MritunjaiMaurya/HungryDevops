@@ -13,7 +13,7 @@
         android:fontFamily="@font/bold"
         android:textSize="28sp"
         android:paddingHorizontal="20dp"
-        android:text="Hello Brother"
+        android:text="Hello Brotherr"
         android:layout_marginTop="150dp"
         android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"/>
