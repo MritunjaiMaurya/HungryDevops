@@ -16,9 +16,6 @@
             android:name=".activity.OnboardingActivity"
             android:exported="false" />
         <activity
-            android:name=".OnboardingActivity"
-            android:exported="false" />
-        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>

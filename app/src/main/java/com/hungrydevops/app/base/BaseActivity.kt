@@ -35,17 +35,6 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-//    fun showLoading() {
-//        mProgressDialog = DialogUtil.showLoadingDialog(this@BaseActivity, "Base Activity")
-//        mProgressDialog!!.setCancelable(true)
-//    }
-
-//    fun openSnackBarMessage(view: View?, msg: String?) {
-//        val snackbar = Snackbar.make(view!!, msg!!, Snackbar.LENGTH_SHORT)
-//        snackbar.setTextColor(resources.getColor(R.color.white))
-//        snackbar.show()
-//    }
-
     fun makeToast(msg: String?) {
         Looper.prepare()
         Toast.makeText(this@BaseActivity, msg, Toast.LENGTH_SHORT).show()
@@ -57,4 +46,5 @@ open class BaseActivity : AppCompatActivity() {
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
+
 }

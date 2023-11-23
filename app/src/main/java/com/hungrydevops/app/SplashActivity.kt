@@ -6,6 +6,7 @@ import android.os.Handler
 import android.view.WindowManager
 import android.view.animation.AlphaAnimation
 import androidx.appcompat.app.AppCompatActivity
+import com.hungrydevops.app.activity.OnboardingActivity
 import com.hungrydevops.app.databinding.ActivitySplashBinding
 
 class SplashActivity:AppCompatActivity(){
@@ -26,7 +27,7 @@ class SplashActivity:AppCompatActivity(){
         binding.imgSplash.startAnimation(animation)
 
 
-        Handler().postDelayed({startActivity(Intent(this, LoginActivity::class.java))
+        Handler().postDelayed({startActivity(Intent(this, OnboardingActivity::class.java))
         finish()
         },3000)
 
