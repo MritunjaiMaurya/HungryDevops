@@ -2,7 +2,9 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.HungryDevops" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
-        <item name="colorPrimary">@color/secondary</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="android:navigationBarColor">@color/primary</item>
+        <item name="colorAccent">@color/secondary</item>
     </style>
 
     <style name="Theme.HungryDevops" parent="Base.Theme.HungryDevops" />
