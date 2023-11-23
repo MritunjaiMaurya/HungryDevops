@@ -1,10 +1,11 @@
 package com.hungrydevops.app
 
+import android.content.Intent
 import android.os.Bundle
-import com.hungrydevops.app.base.BaseActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.hungrydevops.app.databinding.ActivityLoginBinding
 
-class LoginActivity: BaseActivity() {
+class LoginActivity: AppCompatActivity() {
     val binding by lazy {
         ActivityLoginBinding.inflate(layoutInflater)
     }
@@ -12,9 +13,8 @@ class LoginActivity: BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.constraint.setOnClickListener {
-            hidekeyboard(it)
+        binding.tvForgotPassword.setOnClickListener {
+            startActivity(Intent(this@LoginActivity,MainActivity::class.java))
         }
-
     }
 }
