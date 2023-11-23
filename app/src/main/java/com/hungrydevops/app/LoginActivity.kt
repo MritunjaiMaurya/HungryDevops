@@ -1,15 +1,20 @@
 package com.hungrydevops.app
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import com.hungrydevops.app.base.BaseActivity
 import com.hungrydevops.app.databinding.ActivityLoginBinding
 
-class LoginActivity: AppCompatActivity() {
+class LoginActivity: BaseActivity() {
     val binding by lazy {
         ActivityLoginBinding.inflate(layoutInflater)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.constraint.setOnClickListener {
+            hidekeyboard(it)
+        }
+
     }
 }

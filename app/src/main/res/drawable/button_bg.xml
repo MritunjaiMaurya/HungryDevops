@@ -3,7 +3,7 @@
     <!-- Button background gradient -->
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="20dp" />
+            <corners android:radius="30dp" />
             <gradient
                 android:startColor="@color/white"
                 android:endColor="@color/secondary"
