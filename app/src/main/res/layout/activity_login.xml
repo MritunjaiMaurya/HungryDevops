@@ -2,21 +2,52 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraint"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/primary">
+    android:background="@color/primary"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/viewa"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
-        android:id="@+id/tvHello"
+        android:id="@+id/tvHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:fontFamily="@font/bold"
-        android:textSize="28sp"
-        android:paddingHorizontal="20dp"
-        android:text="Hello there"
-        android:layout_marginTop="150dp"
+        android:layout_marginStart="16dp"
+        android:textSize="22sp"
         android:textColor="@color/white"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/semibold"
+        android:text="Hello there 👋"
+        app:layout_constraintTop_toBottomOf="@+id/viewa"
+        />
+
+    <TextView
+        android:id="@+id/tvSubHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/satoshi_regular"
+        android:text="Plase enter your Email id and Password."
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/tvHeading"
+        />
+
+
+    <View
+        android:id="@+id/viewb"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubHeading"
+        />
+
     <View
         android:id="@+id/view1"
         android:layout_width="match_parent"
@@ -24,8 +55,9 @@
         android:background="@drawable/round_rect"
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="20dp"
-        app:layout_constraintTop_toBottomOf="@id/tvHello"
+        app:layout_constraintTop_toBottomOf="@id/viewb"
         app:layout_constraintBottom_toBottomOf="@id/edtEmail"/>
+
     <TextView
         android:id="@+id/tvEmail"
         android:layout_width="0dp"
@@ -33,22 +65,23 @@
         android:text="Email"
         android:fontFamily="@font/satoshi_medium"
         android:textSize="16sp"
-        android:paddingHorizontal="30dp"
+        android:paddingHorizontal="20dp"
         android:paddingTop="5dp"
         android:textColor="@color/darkwhite"
         app:layout_constraintStart_toStartOf="@id/view1"
         app:layout_constraintEnd_toEndOf="@id/view1"
         app:layout_constraintTop_toTopOf="@id/view1"/>
+
     <EditText
         android:id="@+id/edtEmail"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:paddingHorizontal="30dp"
+        android:paddingHorizontal="20dp"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:fontFamily="@font/medium"
         android:textSize="16sp"
-        android:backgroundTint="@color/darkgray"
+        android:backgroundTint="@color/gray"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@id/view1"
         app:layout_constraintEnd_toEndOf="@id/view1"
@@ -70,7 +103,7 @@
         android:text="Password"
         android:fontFamily="@font/satoshi_medium"
         android:textSize="16sp"
-        android:paddingHorizontal="30dp"
+        android:paddingHorizontal="20dp"
         android:paddingTop="5dp"
         android:textColor="@color/darkwhite"
         app:layout_constraintStart_toStartOf="@id/view2"
@@ -82,8 +115,8 @@
         android:layout_height="40dp"
         android:inputType="textPassword"
         android:hint="Password"
-        android:backgroundTint="@color/darkgray"
-        android:paddingHorizontal="30dp"
+        android:backgroundTint="@color/gray"
+        android:paddingHorizontal="20dp"
         android:fontFamily="@font/medium"
         android:textSize="16sp"
         android:textColor="@color/white"
@@ -103,6 +136,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view2"/>
     <TextView
+        android:id="@+id/tvForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Forgot Password?"
@@ -113,18 +147,42 @@
         android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cbRememberMe"/>
+        app:layout_constraintTop_toBottomOf="@id/cbRememberMe"
+        />
+
+
+
+
+
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:cornerRadius="32dp"
         android:text="Sign in"
-        android:elevation="4dp"
-        app:backgroundTint="@color/white"
-        android:fontFamily="@font/semibold"
         android:textSize="16sp"
-        android:textColor="@color/primary"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:textColor="@color/black"
+        android:fontFamily="@font/semibold"
+        android:backgroundTint="@color/secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn2"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        app:cornerRadius="32dp"
+        android:text="Sign in"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/semibold"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
