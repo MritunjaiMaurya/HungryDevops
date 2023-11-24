@@ -8,5 +8,6 @@
     <color name="hint_color">#7AFFFFFF</color>
     <color name="darkwhite">#E2DEDE</color>
     <color name="darkgray">#333333</color>
+    <color name="transparent">#0000</color>
 
 </resources>
