@@ -1,7 +1,10 @@
 package com.hungrydevops.app
 
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
+import android.text.InputType
+import android.widget.ImageView
 import android.widget.Toast
 import com.hungrydevops.app.activity.ForgotPasswordActivity
 import com.hungrydevops.app.activity.OtpActivity
@@ -29,6 +32,18 @@ class LoginActivity: BaseActivity() {
         binding.btn2.setOnClickListener {
             startActivity(Intent(this@LoginActivity,OtpActivity::class.java))
             finish()
+        }
+
+
+        binding.toggle.setOnClickListener{
+            if(it.background==resources.getDrawable(R.drawable.ic_eye_hide)){
+                binding.edtPassword.inputType=InputType.TYPE_CLASS_TEXT
+                (it as ImageView).setImageResource(R.drawable.ic_eye_show)
+            }
+            else{
+                binding.edtPassword.inputType=InputType.TYPE_TEXT_VARIATION_PASSWORD
+                it.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.ic_eye_hide))
+            }
         }
     }
 

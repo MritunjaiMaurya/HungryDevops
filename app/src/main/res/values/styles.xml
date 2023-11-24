@@ -2,6 +2,6 @@
 <resources>
     <style name="EditTextDrawable" parent="Widget.AppCompat.EditText">
         <item name="passwordToggleEnabled">true</item>
-        <item name="passwordToggleDrawable">@drawable/baseline_remove_red_eye_24</item>
+        <item name="passwordToggleDrawable">@drawable/ic_eye_toggle</item>
     </style>
 </resources>
