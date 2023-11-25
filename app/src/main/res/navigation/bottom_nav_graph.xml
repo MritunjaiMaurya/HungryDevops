@@ -21,11 +21,6 @@
         android:label="fragment_quiz"
         tools:layout="@layout/fragment_quiz" />
     <fragment
-        android:id="@+id/interviewQuestionFragment"
-        android:name="com.hungrydevops.app.InterviewQuestionFragment"
-        android:label="fragment_interview_question"
-        tools:layout="@layout/fragment_interview_question" />
-    <fragment
         android:id="@+id/proTipsFragment"
         android:name="com.hungrydevops.app.ProTipsFragment"
         android:label="fragment_pro_tips"

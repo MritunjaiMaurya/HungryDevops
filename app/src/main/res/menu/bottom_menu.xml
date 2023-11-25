@@ -20,12 +20,6 @@
         />
 
     <item
-        android:id="@+id/bottom_interview_que"
-        android:icon="@drawable/cal"
-        android:title="Interview Que"
-        />
-
-    <item
         android:id="@+id/bottom_pro_tips"
         android:icon="@drawable/cal"
         android:title="Pro Tips"
