@@ -45,16 +45,15 @@ class LoginActivity: BaseActivity() {
             }
 
             // Move the cursor to the end of the text
-            binding.edtPassword.setSelection((it as EditText).text?.length ?: 0)
+            binding.edtPassword.setSelection(binding.edtPassword.text?.length ?: 0)
 
-            // Change the eye icon based on the password visibility state
-            binding.toggle.setImageResource(if (isPasswordVisible) R.drawable.ic_eye_show else R.drawable.ic_eye_hide)
+            binding.toggle.setImageResource(if (isPasswordVisible) R.drawable.ic_eye_hide else R.drawable.ic_eye_show)
         }
     }
 
     private fun validate(): Boolean {
-        if(binding.edtPassword.text.isEmpty()){
-            binding.edtPassword.error="Please enter Email ID"
+        if(binding.edtEmail.text.isEmpty()){
+            binding.edtEmail.error="Please enter Email ID"
             shakeView(binding.view1)
             return false
         }
