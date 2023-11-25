@@ -21,13 +21,13 @@
 
     <item
         android:id="@+id/bottom_pro_tips"
-        android:icon="@drawable/cal"
+        android:icon="@drawable/click_status_protip"
         android:title="Pro Tips"
         />
 
     <item
         android:id="@+id/bottom_profile"
-        android:icon="@drawable/cal"
+        android:icon="@drawable/click_status_profile"
         android:title="Profile"
         />
 

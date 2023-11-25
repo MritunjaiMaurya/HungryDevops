@@ -2,7 +2,11 @@ package com.hungrydevops.app.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButton
 import com.hungrydevops.app.R
@@ -21,17 +25,23 @@ class OtpActivity : BaseActivity() {
         binding.btn2.setSingleClickListener {
             showBottomSheet()
         }
+        binding.constraintOtp.setSingleClickListener {
+            hidekeyboard(binding.constraintOtp)
+        }
+        binding.edtOne.requestFocus()
+
+        showSoftKeyboard(binding.edtOne)
+
+        binding.edtOne.addTextChangedListener(textWatcher)
+        binding.edtTwo.addTextChangedListener(textWatcher)
+        binding.edtThree.addTextChangedListener(textWatcher)
+        binding.edtFour.addTextChangedListener(textWatcher)
+
+        binding.edtFour.setOnKeyListener(keyEvent)
+        binding.edtThree.setOnKeyListener(keyEvent)
+        binding.edtTwo.setOnKeyListener(keyEvent)
     }
-//    private fun bottomSheet(){
-//        val dialog=BottomSheetDialog(this)
-//        var view:View=layoutInflater.inflate(R.layout.dialog_go_to_home,null)
-//        dialog.setContentView(view)
-//
-//        findViewById<MaterialButton>(R.id.btn_bs2).setSingleClickListener {
-//
-//        }
-//        dialog.show()
-//    }
+
     private fun showBottomSheet() {
         val bottomSheetDialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.dialog_go_to_home, null)
@@ -43,5 +53,51 @@ class OtpActivity : BaseActivity() {
         }
 
         bottomSheetDialog.show()
+    }
+
+    var textWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+            val text=s.toString()
+            val inputMethodManager=getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            when(currentFocus){
+                binding.edtOne-> if(text.length==1){ binding.edtTwo.requestFocus()}
+                binding.edtTwo-> if(text.length==1){ binding.edtThree.requestFocus()}
+                binding.edtThree-> if(text.length==1) {binding.edtFour.requestFocus()}
+                binding.edtFour-> if(text.length==1) inputMethodManager.hideSoftInputFromWindow(currentFocus?.getWindowToken(),0)
+            }
+        }
+    }
+    //For backward shifting of focus/cursor one by one in edittext when deleting OTP(using backspace button)
+    var keyEvent: View.OnKeyListener=object : View.OnKeyListener{
+        override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+            val code4=binding.edtFour
+            val code2=binding.edtTwo
+            val code3=binding.edtThree
+            val code1=binding.edtOne
+            if(event?.action== KeyEvent.ACTION_DOWN&&keyCode== KeyEvent.KEYCODE_DEL) {
+                if(code4.text.isEmpty()&&getCurrentFocus()==binding.edtFour){
+                    code3.setText(null)
+                    code3.requestFocus()
+                    return true
+                }
+                if(code3.text.isEmpty()&&getCurrentFocus()==binding.edtThree){
+                    code2.setText(null)
+                    code2.requestFocus()
+                    return true
+                }
+                if(code2.text.isEmpty()&&getCurrentFocus()==binding.edtTwo){
+                    code1.setText(null)
+                    code1.requestFocus()
+                    return true
+                }
+            }
+            return false
+        }
     }
 }

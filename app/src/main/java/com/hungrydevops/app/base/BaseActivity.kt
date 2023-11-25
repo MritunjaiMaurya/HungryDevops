@@ -34,6 +34,13 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    fun showSoftKeyboard(view: View) {
+        if (view.requestFocus()) {
+            val inputMethodManager: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+        }
+    }
+
     fun makeToast(msg: String?) {
         Looper.prepare()
         Toast.makeText(this@BaseActivity, msg, Toast.LENGTH_SHORT).show()

@@ -22,6 +22,7 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         app:itemIconSize="30dp"
         android:elevation="20dp"
         android:textAlignment="center"

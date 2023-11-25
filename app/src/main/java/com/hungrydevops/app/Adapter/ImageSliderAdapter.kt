@@ -11,7 +11,6 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.hungrydevops.app.ItemImageSlider
 import com.hungrydevops.app.R
-import com.squareup.picasso.Picasso
 
 class ImageSlideAdapter(private val context: Context, private var imageList: List<ItemImageSlider>) : PagerAdapter() {
 
@@ -32,11 +31,11 @@ class ImageSlideAdapter(private val context: Context, private var imageList: Lis
                         currentPage++
                     }
                     viewPager.setCurrentItem(currentPage, true)
-                    handler.postDelayed(this, 3000)
+                    handler.postDelayed(this, 2000)
                 }
             }
 
-            Handler().postDelayed(runnable,1500)
+            Handler().postDelayed(runnable,1000)
         }
 
         override fun isViewFromObject(view: View, `object`: Any): Boolean {

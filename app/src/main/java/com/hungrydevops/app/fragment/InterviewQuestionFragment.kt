@@ -1,4 +1,4 @@
-package com.hungrydevops.app
+package com.hungrydevops.app.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

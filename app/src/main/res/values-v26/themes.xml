@@ -19,4 +19,9 @@
         <item name="fontFamily">@font/medium</item>
     </style>
 
+    <style name="CustomDatePickerDialog" parent="Theme.AppCompat.Light.Dialog">
+        <!-- Customize your theme here -->
+        <item name="colorAccent">@color/black</item>
+        <!-- You can add more customizations if needed -->
+    </style>
 </resources>

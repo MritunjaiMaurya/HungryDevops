@@ -2,6 +2,7 @@ package com.hungrydevops.app.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
 import android.text.InputType
 import android.widget.EditText
 import android.widget.ImageView
@@ -28,7 +29,7 @@ class LoginActivity: BaseActivity() {
         }
 
         binding.btn2.setOnClickListener {
-            if(validate())
+//            if(validate())
                 startActivity(Intent(this@LoginActivity,OtpActivity::class.java))
         }
 

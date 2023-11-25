@@ -1,29 +1,30 @@
 package com.hungrydevops.app.activity
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.widget.Toast
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
+import com.hungrydevops.app.HandsonReceipeFragment
 import com.hungrydevops.app.R
 import com.hungrydevops.app.base.BaseActivity
 import com.hungrydevops.app.databinding.ActivityMainBinding
+import com.hungrydevops.app.fragment.MainFragment
 
 class MainActivity : BaseActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
     private var backPressedTime: Long = 0
 
     private var lastClickTime: Long = 0
     private val throttleInterval: Long = 1000
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.bottomNavigation.setupWithNavController(findNavController(R.id.frameLayout))
+        replaceFragment(MainFragment())
 
-//        replaceFragment(MainFragment())
-//
 //        binding.bottomNavigation.setOnItemSelectedListener { item ->
 //            val currentClickTime = SystemClock.elapsedRealtime()
 //            if (currentClickTime - lastClickTime < throttleInterval) {
@@ -43,12 +44,12 @@ class MainActivity : BaseActivity() {
 //            true // return true to display the item as the selected item
 //        }
     }
-//    fun replaceFragment(fragment: androidx.fragment.app.Fragment){
-//        val fragmentManager = supportFragmentManager
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction.replace(R.id.frameLayout,fragment)
-//        fragmentTransaction.commit()
-//    }
+    fun replaceFragment(fragment: androidx.fragment.app.Fragment){
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frameLayout,fragment)
+        fragmentTransaction.commit()
+    }
 
     override fun onBackPressed() {
         if (System.currentTimeMillis() - backPressedTime < 2000) {
