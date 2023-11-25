@@ -6,7 +6,7 @@
     android:id="@+id/constraint"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primary"
-    tools:context=".LoginActivity">
+    tools:context=".activity.LoginActivity">
 
     <ImageView
         android:id="@+id/viewa"
@@ -39,7 +39,6 @@
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@+id/tvHeading"
         />
-
 
     <View
         android:id="@+id/viewb"
@@ -161,10 +160,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cbRememberMe"
         />
-
-
-
-
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn1"

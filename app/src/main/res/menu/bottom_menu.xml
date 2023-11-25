@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_home"
+        android:icon="@drawable/cal"
+        android:title="Home"
+    />
+
+    <item
+        android:id="@+id/bottom_handson_experience"
+        android:icon="@drawable/cal"
+        android:title="Handson Experience"
+        />
+
+    <item
+        android:id="@+id/bottom_quiz"
+        android:icon="@drawable/cal"
+        android:title="Quiz"
+        />
+
+    <item
+        android:id="@+id/bottom_interview_que"
+        android:icon="@drawable/cal"
+        android:title="Interview Que"
+        />
+
+    <item
+        android:id="@+id/bottom_pro_tips"
+        android:icon="@drawable/cal"
+        android:title="Pro Tips"
+        />
+
+    <item
+        android:id="@+id/bottom_profile"
+        android:icon="@drawable/cal"
+        android:title="Profile"
+        />
+
+</menu>

@@ -1,4 +1,4 @@
-package com.hungrydevops.app
+package com.hungrydevops.app.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.os.Handler
 import android.view.WindowManager
 import android.view.animation.AlphaAnimation
 import androidx.appcompat.app.AppCompatActivity
-import com.hungrydevops.app.activity.OnboardingActivity
 import com.hungrydevops.app.databinding.ActivitySplashBinding
 
 class SplashActivity:AppCompatActivity(){

@@ -1,10 +1,7 @@
 package com.hungrydevops.app.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.hungrydevops.app.LoginActivity
-import com.hungrydevops.app.R
 import com.hungrydevops.app.base.BaseActivity
 import com.hungrydevops.app.databinding.ActivityForgotPasswordBinding
 
@@ -19,7 +16,7 @@ class ForgotPasswordActivity : BaseActivity() {
 
 
         binding.imgBack.setSingleClickListener {
-            startActivity(Intent(this@ForgotPasswordActivity,LoginActivity::class.java))
+            startActivity(Intent(this@ForgotPasswordActivity, LoginActivity::class.java))
             finish()
         }
 

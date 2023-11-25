@@ -2,8 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/primary"
+    tools:context=".activity.CreateAccountActivity"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/img_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:src="@drawable/line"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <TextView
         android:id="@+id/tvHeading"
@@ -12,10 +25,10 @@
         android:layout_marginStart="16dp"
         android:textSize="22sp"
         android:textColor="@color/white"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="18dp"
         android:fontFamily="@font/semibold"
         android:text="Create an account"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_indicator"
         />
 
     <TextView
@@ -42,12 +55,12 @@
         app:layout_constraintBottom_toBottomOf="@id/edtEmail"/>
 
     <TextView
-        android:id="@+id/tvEmail"
+        android:id="@+id/tv_full_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Email"
+        android:text="Full name"
         android:fontFamily="@font/satoshi_medium"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:paddingHorizontal="20dp"
         android:paddingTop="5dp"
         android:textColor="@color/darkwhite"
@@ -60,7 +73,7 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:paddingHorizontal="20dp"
-        android:hint="Email"
+        android:hint="Full name"
         android:inputType="textEmailAddress"
         android:fontFamily="@font/medium"
         android:textSize="16sp"
@@ -68,7 +81,7 @@
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@id/view1"
         app:layout_constraintEnd_toEndOf="@id/view1"
-        app:layout_constraintTop_toBottomOf="@id/tvEmail"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_full_name"/>
 
     <View
         android:id="@+id/view2"
@@ -78,34 +91,173 @@
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="20dp"
         app:layout_constraintTop_toBottomOf="@id/view1"
-        app:layout_constraintBottom_toBottomOf="@id/edtPassword"/>
+        app:layout_constraintBottom_toBottomOf="@+id/edt_Dob"
+        />
+
     <TextView
-        android:id="@+id/tvPassword"
+        android:id="@+id/tv_dob"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Password"
+        android:text="Date of Birth"
         android:fontFamily="@font/satoshi_medium"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:paddingHorizontal="20dp"
         android:paddingTop="5dp"
         android:textColor="@color/darkwhite"
         app:layout_constraintStart_toStartOf="@id/view2"
         app:layout_constraintEnd_toEndOf="@id/view2"
         app:layout_constraintTop_toTopOf="@id/view2"/>
+
     <EditText
-        android:id="@+id/edtPassword"
+        android:id="@+id/edt_Dob"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:inputType="textPassword"
-        android:hint="Password"
-        android:backgroundTint="@color/darkgray"
         android:paddingHorizontal="20dp"
+        android:hint="Date of birth"
+        android:inputType="date"
         android:fontFamily="@font/medium"
+        android:drawablePadding="10dp"
         android:textSize="16sp"
+        android:drawableRight="@drawable/cal"
+        android:backgroundTint="@color/darkgray"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@id/view2"
         app:layout_constraintEnd_toEndOf="@id/view2"
-        app:layout_constraintTop_toBottomOf="@id/tvPassword"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_dob"/>
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/round_rect"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintTop_toBottomOf="@id/view2"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_phone_no"
+        />
+
+    <TextView
+        android:id="@+id/tv_phone_no"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Phone number"
+        android:fontFamily="@font/satoshi_medium"
+        android:textSize="14sp"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="5dp"
+        android:textColor="@color/darkwhite"
+        app:layout_constraintStart_toStartOf="@id/view3"
+        app:layout_constraintEnd_toEndOf="@id/view3"
+        app:layout_constraintTop_toTopOf="@id/view3"/>
+
+    <EditText
+        android:id="@+id/edt_phone_no"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:paddingHorizontal="20dp"
+        android:hint="Phone number"
+        android:inputType="number"
+        android:maxLength="10"
+        android:fontFamily="@font/medium"
+        android:textSize="16sp"
+        android:backgroundTint="@color/darkgray"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@id/view3"
+        app:layout_constraintEnd_toEndOf="@id/view3"
+        app:layout_constraintTop_toBottomOf="@id/tv_phone_no"/>
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/round_rect"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintTop_toBottomOf="@id/view3"
+        app:layout_constraintBottom_toBottomOf="@+id/t_input"
+        />
+
+    <TextView
+        android:id="@+id/tv_country"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Country"
+        android:fontFamily="@font/satoshi_medium"
+        android:textSize="14sp"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="5dp"
+        android:textColor="@color/darkwhite"
+        app:layout_constraintStart_toStartOf="@id/view4"
+        app:layout_constraintEnd_toEndOf="@id/view4"
+        app:layout_constraintTop_toTopOf="@id/view4"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:id="@+id/t_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintStart_toStartOf="@id/view4"
+        app:layout_constraintEnd_toEndOf="@id/view4"
+        app:layout_constraintTop_toBottomOf="@id/tv_country"
+        >
+        <AutoCompleteTextView
+            android:id="@+id/edt_country"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:paddingHorizontal="20dp"
+            android:backgroundTint="@color/darkgray"
+            android:drawableRight="@drawable/drop_down"
+            android:focusableInTouchMode="true"
+            android:fontFamily="@font/medium"
+            android:inputType="none"
+            android:textSize="16sp"
+            android:hint="Select country"
+            android:textColor="@color/black"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+<!--    <View-->
+<!--        android:id="@+id/view2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:background="@drawable/round_rect"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginHorizontal="20dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/view1"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/edtPassword"/>-->
+<!--    <TextView-->
+<!--        android:id="@+id/tvPassword"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Password"-->
+<!--        android:fontFamily="@font/satoshi_medium"-->
+<!--        android:textSize="16sp"-->
+<!--        android:paddingHorizontal="20dp"-->
+<!--        android:paddingTop="5dp"-->
+<!--        android:textColor="@color/darkwhite"-->
+<!--        app:layout_constraintStart_toStartOf="@id/view2"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/view2"-->
+<!--        app:layout_constraintTop_toTopOf="@id/view2"/>-->
+<!--    <EditText-->
+<!--        android:id="@+id/edtPassword"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:hint="Password"-->
+<!--        android:backgroundTint="@color/darkgray"-->
+<!--        android:paddingHorizontal="20dp"-->
+<!--        android:fontFamily="@font/medium"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textColor="@color/white"-->
+<!--        app:layout_constraintStart_toStartOf="@id/view2"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/view2"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tvPassword"/>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

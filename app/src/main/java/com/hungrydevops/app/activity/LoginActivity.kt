@@ -1,13 +1,11 @@
-package com.hungrydevops.app
+package com.hungrydevops.app.activity
 
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
 import android.text.InputType
 import android.widget.ImageView
 import android.widget.Toast
-import com.hungrydevops.app.activity.ForgotPasswordActivity
-import com.hungrydevops.app.activity.OtpActivity
+import com.hungrydevops.app.R
 import com.hungrydevops.app.base.BaseActivity
 import com.hungrydevops.app.databinding.ActivityLoginBinding
 

@@ -1,11 +1,7 @@
 package com.hungrydevops.app.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.hungrydevops.app.LoginActivity
-import com.hungrydevops.app.R
-import com.hungrydevops.app.SuccessActivity
 import com.hungrydevops.app.base.BaseActivity
 import com.hungrydevops.app.databinding.ActivityOnboardingBinding
 
@@ -19,11 +15,11 @@ class OnboardingActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.btnSignIn.setSingleClickListener {
-            startActivity(Intent(this@OnboardingActivity,LoginActivity::class.java))
+            startActivity(Intent(this@OnboardingActivity, LoginActivity::class.java))
             finish()
         }
         binding.btnSignup.setSingleClickListener {
-            startActivity(Intent(this@OnboardingActivity,SuccessActivity::class.java))
+            startActivity(Intent(this@OnboardingActivity, CreateAccountActivity::class.java))
             finish()
         }
     }

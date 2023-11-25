@@ -9,5 +9,8 @@
     <color name="darkwhite">#E2DEDE</color>
     <color name="darkgray">#333333</color>
     <color name="transparent">#0000</color>
+    <color name="bottom_nav_selected_item">#FCC822</color>
+    <color name="bottom_nav_unselected_item">#FFFFFFFF</color>
+
 
 </resources>

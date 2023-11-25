@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.hungrydevops.app.fragment.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/handsonReceipeFragment"
+        android:name="com.hungrydevops.app.HandsonReceipeFragment"
+        android:label="fragment_handson_receipe"
+        tools:layout="@layout/fragment_handson_receipe" />
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.hungrydevops.app.QuizFragment"
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz" />
+    <fragment
+        android:id="@+id/interviewQuestionFragment"
+        android:name="com.hungrydevops.app.InterviewQuestionFragment"
+        android:label="fragment_interview_question"
+        tools:layout="@layout/fragment_interview_question" />
+    <fragment
+        android:id="@+id/proTipsFragment"
+        android:name="com.hungrydevops.app.ProTipsFragment"
+        android:label="fragment_pro_tips"
+        tools:layout="@layout/fragment_pro_tips" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.hungrydevops.app.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
