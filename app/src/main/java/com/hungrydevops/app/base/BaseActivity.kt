@@ -6,12 +6,11 @@ import android.os.Bundle
 import android.os.Looper
 import android.os.SystemClock
 import android.view.View
-import android.view.WindowManager
+import android.view.animation.AnimationUtils
+import android.view.animation.TranslateAnimation
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import com.google.android.material.snackbar.Snackbar
 
 open class BaseActivity : AppCompatActivity() {
     private var mProgressDialog: ProgressDialog? = null
@@ -45,6 +44,21 @@ open class BaseActivity : AppCompatActivity() {
         view.clearFocus()
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    fun toast(message:String){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    fun shakeView(view: View) {
+        val shakeAnimation = TranslateAnimation(0f, 10f, 0f, 0f)
+        shakeAnimation.duration = 500
+        shakeAnimation.interpolator = AnimationUtils.loadInterpolator(
+            this,
+            android.R.interpolator.cycle
+        )
+
+        view.startAnimation(shakeAnimation)
     }
 
 }
