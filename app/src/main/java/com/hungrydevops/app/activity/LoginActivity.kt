@@ -3,6 +3,7 @@ package com.hungrydevops.app.activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import com.hungrydevops.app.R
@@ -20,7 +21,6 @@ class LoginActivity: BaseActivity() {
 
         binding.tvForgotPassword.setOnClickListener {
             startActivity(Intent(this@LoginActivity,ForgotPasswordActivity::class.java))
-            finish()
         }
 
         binding.constraint.setOnClickListener {
@@ -28,21 +28,42 @@ class LoginActivity: BaseActivity() {
         }
 
         binding.btn2.setOnClickListener {
-            startActivity(Intent(this@LoginActivity,OtpActivity::class.java))
-            finish()
+            if(validate())
+                startActivity(Intent(this@LoginActivity,OtpActivity::class.java))
         }
 
 
-        binding.toggle.setOnClickListener{
-            if(it.background==resources.getDrawable(R.drawable.ic_eye_hide)){
-                binding.edtPassword.inputType=InputType.TYPE_CLASS_TEXT
-                (it as ImageView).setImageResource(R.drawable.ic_eye_show)
+        binding.toggle.setOnClickListener {
+            // Toggle password visibility
+            val isPasswordVisible = binding.edtPassword.inputType == (InputType.TYPE_CLASS_TEXT
+                    or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD)
+
+            binding.edtPassword.inputType = if (isPasswordVisible) {
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            } else {
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             }
-            else{
-                binding.edtPassword.inputType=InputType.TYPE_TEXT_VARIATION_PASSWORD
-                it.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.ic_eye_hide))
-            }
+
+            // Move the cursor to the end of the text
+            binding.edtPassword.setSelection((it as EditText).text?.length ?: 0)
+
+            // Change the eye icon based on the password visibility state
+            binding.toggle.setImageResource(if (isPasswordVisible) R.drawable.ic_eye_show else R.drawable.ic_eye_hide)
         }
+    }
+
+    private fun validate(): Boolean {
+        if(binding.edtPassword.text.isEmpty()){
+            binding.edtPassword.error="Please enter Email ID"
+            shakeView(binding.view1)
+            return false
+        }
+        if(binding.edtPassword.text.isEmpty()){
+            toast("Please enter password")
+            shakeView(binding.view2)
+            return false
+        }
+        return true
     }
 
     override fun onBackPressed() {
