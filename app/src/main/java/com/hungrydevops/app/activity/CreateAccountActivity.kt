@@ -18,7 +18,7 @@ class CreateAccountActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.btn2.setOnClickListener {
-            if(validate())
+//            if(validate())
             startActivity(Intent(this@CreateAccountActivity,AlmostDoneActivity::class.java))
         }
         binding.constraint.setOnClickListener {

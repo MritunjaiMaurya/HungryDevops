@@ -184,11 +184,11 @@
         android:textSize="16sp"
         android:fontFamily="@font/satoshi_medium"
         android:textColor="@color/white"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cbRememberMe"
+        app:layout_constraintBottom_toTopOf="@+id/btn_google_2"
         />
 
     <com.google.android.material.button.MaterialButton

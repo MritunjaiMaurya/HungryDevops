@@ -6,13 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.hungrydevops.app.R
+import com.hungrydevops.app.databinding.FragmentProTipsBinding
+import com.hungrydevops.app.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
+
+    private lateinit var binding : FragmentProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+
+
+        return binding.root
     }
 }

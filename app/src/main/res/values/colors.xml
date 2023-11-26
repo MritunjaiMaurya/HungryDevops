@@ -11,6 +11,9 @@
     <color name="transparent">#0000</color>
     <color name="bottom_nav_selected_item">#FCC822</color>
     <color name="bottom_nav_unselected_item">#FFFFFFFF</color>
+    <color name="jenkins">#D33834</color>
+    <color name="docker">#0db7ed</color>
+    <color name="ubuntu">#e95420</color>
 
 
 </resources>

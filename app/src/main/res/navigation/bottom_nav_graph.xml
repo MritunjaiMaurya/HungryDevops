@@ -11,11 +11,6 @@
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
     <fragment
-        android:id="@+id/handsonReceipeFragment"
-        android:name="com.hungrydevops.app.HandsonReceipeFragment"
-        android:label="fragment_handson_receipe"
-        tools:layout="@layout/fragment_handson_receipe" />
-    <fragment
         android:id="@+id/quizFragment"
         android:name="com.hungrydevops.app.QuizFragment"
         android:label="fragment_quiz"

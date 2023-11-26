@@ -5,7 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hungrydevops.app.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.hungrydevops.app.Adapter.HandsonReceipeAdapter
+import com.hungrydevops.app.Adapter.InterviewQueAdapter
+import com.hungrydevops.app.Adapter.ProTipsAdapter
+import com.hungrydevops.app.Adapter.QuizAdapter
 import com.hungrydevops.app.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
@@ -17,6 +21,24 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMainBinding.inflate(layoutInflater, container, false)
+
+        binding.tvWelcome.setText("Welcome "+"Prateek"+" 👋")
+
+        binding.rvHandsonReceipe.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val adapter = HandsonReceipeAdapter(requireContext())
+        binding.rvHandsonReceipe.adapter=adapter
+
+        binding.rvInterviewQuestion.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val adapter2 = InterviewQueAdapter(requireContext())
+        binding.rvInterviewQuestion.adapter=adapter2
+
+        binding.rvQuiz.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val adapter3 = QuizAdapter(requireContext())
+        binding.rvQuiz.adapter=adapter3
+
+        binding.rvProTips.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val adapter4 = ProTipsAdapter(requireContext())
+        binding.rvProTips.adapter=adapter4
 
 
 

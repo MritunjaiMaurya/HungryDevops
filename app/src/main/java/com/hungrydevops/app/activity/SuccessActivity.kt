@@ -19,6 +19,7 @@ class SuccessActivity : BaseActivity() {
 
         binding.btn2.setSingleClickListener {
             startActivity(Intent(this@SuccessActivity,MainActivity::class.java))
+            finish()
         }
 
     }
