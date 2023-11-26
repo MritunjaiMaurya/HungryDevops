@@ -1,8 +1,11 @@
 package com.hungrydevops.app.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.Editable
+import android.text.Html
 import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.View
@@ -22,6 +25,8 @@ class OtpActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        countDownTimer()
+
         binding.btn2.setSingleClickListener {
             showBottomSheet()
         }
@@ -40,6 +45,21 @@ class OtpActivity : BaseActivity() {
         binding.edtFour.setOnKeyListener(keyEvent)
         binding.edtThree.setOnKeyListener(keyEvent)
         binding.edtTwo.setOnKeyListener(keyEvent)
+    }
+
+    private fun countDownTimer() {
+        object : CountDownTimer(30000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                binding.tvResend.isClickable = false
+                binding.tvResend.text = "You can resend code in "+(((binding.tvResend.setTextColor(
+                    Color.parseColor(#FCC822)).millisUntilFinished / 1000).toString()))+ " s"
+            }
+
+            override fun onFinish() {
+                binding.tvResend.isClickable = true
+                binding.tvResend.text = "Click to resend"
+            }
+        }.start()
     }
 
     private fun showBottomSheet() {
