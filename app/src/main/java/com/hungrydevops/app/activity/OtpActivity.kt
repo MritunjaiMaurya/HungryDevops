@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.Html
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.TextWatcher
+import android.text.style.ForegroundColorSpan
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -51,8 +54,19 @@ class OtpActivity : BaseActivity() {
         object : CountDownTimer(30000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 binding.tvResend.isClickable = false
-                binding.tvResend.text = "You can resend code in "+(((binding.tvResend.setTextColor(
-                    Color.parseColor(#FCC822)).millisUntilFinished / 1000).toString()))+ " s"
+                val countdownText = "You can resend code in ${(millisUntilFinished / 1000).toString()} s"
+                val spannableString = SpannableString(countdownText)
+
+                // Define the start and end indices for the colored part
+                val start = countdownText.indexOf((millisUntilFinished / 1000).toString())
+                val end = start + (millisUntilFinished / 1000).toString().length
+
+                // Set the color for the specified part
+                val color = resources.getColor(R.color.secondary)
+                spannableString.setSpan(ForegroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+                // Set the SpannableString to the TextView
+                binding.tvResend.text = spannableString
             }
 
             override fun onFinish() {
