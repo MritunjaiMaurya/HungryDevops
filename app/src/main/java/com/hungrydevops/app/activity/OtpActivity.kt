@@ -28,6 +28,7 @@ class OtpActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+//        binding.tvResend2.text="RESEND"
         countDownTimer()
 
         binding.btn2.setSingleClickListener {
