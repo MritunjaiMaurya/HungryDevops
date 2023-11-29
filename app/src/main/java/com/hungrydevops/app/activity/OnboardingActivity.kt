@@ -39,11 +39,9 @@ class OnboardingActivity : BaseActivity() {
 
         binding.btnSignIn.setSingleClickListener {
             startActivity(Intent(this@OnboardingActivity, LoginActivity::class.java))
-            finish()
         }
         binding.btnSignup.setSingleClickListener {
             startActivity(Intent(this@OnboardingActivity, CreateAccountActivity::class.java))
-            finish()
         }
 
         binding.tabLayout.setupWithViewPager(binding.viewPager)

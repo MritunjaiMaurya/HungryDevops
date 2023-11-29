@@ -1,7 +1,6 @@
 package com.hungrydevops.app.activity
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
@@ -51,7 +50,7 @@ class OtpActivity : BaseActivity() {
     }
 
     private fun countDownTimer() {
-        object : CountDownTimer(30000, 1000) {
+        object : CountDownTimer(32000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 binding.tvResend.isClickable = false
                 val countdownText = "You can resend code in ${(millisUntilFinished / 1000).toString()} s"
