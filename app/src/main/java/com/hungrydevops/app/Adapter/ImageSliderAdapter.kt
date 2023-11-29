@@ -34,7 +34,6 @@ class ImageSlideAdapter(private val context: Context, private var imageList: Lis
                     handler.postDelayed(this, 2000)
                 }
             }
-
             Handler().postDelayed(runnable,1000)
         }
 
