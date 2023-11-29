@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
-import android.text.Html
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextWatcher
@@ -27,6 +26,7 @@ class OtpActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+//        binding.tvResend.text="RESEND"
         countDownTimer()
 
         binding.btn2.setSingleClickListener {
@@ -55,19 +55,12 @@ class OtpActivity : BaseActivity() {
                 binding.tvResend.isClickable = false
                 val countdownText = "You can resend code in ${(millisUntilFinished / 1000).toString()} s"
                 val spannableString = SpannableString(countdownText)
-
-                // Define the start and end indices for the colored part
                 val start = countdownText.indexOf((millisUntilFinished / 1000).toString())
                 val end = start + (millisUntilFinished / 1000).toString().length
-
-                // Set the color for the specified part
                 val color = resources.getColor(R.color.secondary)
                 spannableString.setSpan(ForegroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-                // Set the SpannableString to the TextView
                 binding.tvResend.text = spannableString
             }
-
             override fun onFinish() {
                 binding.tvResend.isClickable = true
                 binding.tvResend.text = "Click to resend"
@@ -84,7 +77,6 @@ class OtpActivity : BaseActivity() {
         goToHomeButton.setSingleClickListener {
             startActivity(Intent(this@OtpActivity, MainActivity::class.java))
         }
-
         bottomSheetDialog.show()
     }
 
