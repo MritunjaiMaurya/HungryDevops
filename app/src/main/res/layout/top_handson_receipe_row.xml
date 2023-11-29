@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="10dp"
-        android:layout_margin="4dp"
+        android:layout_marginStart="4dp"
         app:cardBackgroundColor="@color/jenkins"
         app:cardCornerRadius="16dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,7 +22,7 @@
 
         <ImageView
             android:layout_width="150dp"
-            android:layout_height="120dp"
+            android:layout_height="124dp"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
             android:src="@color/jenkins"
