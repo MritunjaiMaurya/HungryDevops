@@ -3,6 +3,7 @@ package com.hungrydevops.app.activity
 import android.os.Bundle
 import android.os.SystemClock
 import android.widget.Toast
+import com.google.firebase.FirebaseApp
 import com.hungrydevops.app.R
 import com.hungrydevops.app.base.BaseActivity
 import com.hungrydevops.app.databinding.ActivityMainBinding
