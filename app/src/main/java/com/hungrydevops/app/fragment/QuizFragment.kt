@@ -31,8 +31,6 @@ class QuizFragment : Fragment() {
 //        binding.tv.setOnClickListener {
 //            startActivity(Intent(context,QuizActivity::class.java))
 //        }
-
-        binding.rvQuizer.layoutManager = LinearLayoutManager(context)
         getSubjects()
 
         return binding.root
@@ -44,13 +42,13 @@ class QuizFragment : Fragment() {
         db.firestoreSettings = FirebaseFirestoreSettings.Builder()
             .setPersistenceEnabled(false)
             .build()
-        val questionsRef = db.collection("quiz")
 
-            questionsRef.document("Subject").get()
+        db.collection("quiz").document("Subject").get()
                 .addOnSuccessListener { querySnapshot ->
                     if (querySnapshot.exists()) {
                         val data = querySnapshot.data?.get("subject")
                         subjectList.addAll(data as Collection<String>)
+                        binding.rvQuizer.layoutManager = LinearLayoutManager(context)
                         val adapter= QuizerCategoryAdapter(requireContext(), subjectList)
                         binding.rvQuizer.adapter=adapter
                     } else {
