@@ -15,77 +15,6 @@
         android:background="@color/black"
         >
 
-        <ImageView
-            android:id="@+id/img_home"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_splash_logo"
-            android:layout_margin="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/tv_app_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/medium"
-            android:padding="6dp"
-            android:text="Hungry Devops"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/img_home"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/img_notification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/notify"
-            android:padding="10dp"
-            android:layout_margin="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-        <ImageView
-            android:id="@+id/img_notification_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/notify_count"
-            android:layout_margin="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/semibold"
-            android:gravity="center"
-            android:text="5"
-            android:padding="2dp"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            app:layout_constraintTop_toTopOf="@+id/img_notification_count"
-            app:layout_constraintBottom_toBottomOf="@+id/img_notification_count"
-            app:layout_constraintEnd_toEndOf="@+id/img_notification_count"
-            app:layout_constraintStart_toStartOf="@+id/img_notification_count" />
-
-        <ImageView
-            android:id="@+id/img_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/search_2"
-            android:layout_marginTop="15dp"
-            android:layout_marginHorizontal="5dp"
-            android:padding="5dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/img_notification"
-            />
-
         <TextView
             android:id="@+id/tv_welcome"
             android:layout_width="wrap_content"
@@ -97,7 +26,7 @@
             android:layout_marginStart="16dp"
             android:textColor="@color/white"
             android:fontFamily="@font/semibold"
-            app:layout_constraintTop_toBottomOf="@+id/img_home"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             />
 

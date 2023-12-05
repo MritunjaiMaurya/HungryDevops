@@ -14,6 +14,7 @@
     <color name="jenkins">#D33834</color>
     <color name="docker">#0db7ed</color>
     <color name="ubuntu">#e95420</color>
+    <color name="grass_green">#009A17</color>
 
 
 </resources>
