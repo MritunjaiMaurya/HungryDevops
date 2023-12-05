@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.hungrydevops.app.Adapter.QuizerCategoryAdapter
 import com.hungrydevops.app.R
-import com.hungrydevops.app.activity.TestActivity
+import com.hungrydevops.app.activity.QuizActivity
 import com.hungrydevops.app.databinding.FragmentQuizBinding
 
 class QuizFragment : Fragment() {
@@ -20,9 +22,13 @@ class QuizFragment : Fragment() {
     ): View? {
         binding = FragmentQuizBinding.inflate(inflater, container, false)
 
-        binding.click.setOnClickListener{
-            startActivity(Intent(context, TestActivity::class.java))
-        }
+//        binding.tv.setOnClickListener {
+//            startActivity(Intent(context,QuizActivity::class.java))
+//        }
+
+        binding.rvQuizer.layoutManager = LinearLayoutManager(context)
+        val adapter= QuizerCategoryAdapter(requireContext())
+        binding.rvQuizer.adapter=adapter
 
         return binding.root
     }

@@ -3,7 +3,6 @@ package com.hungrydevops.app.activity
 import android.os.Bundle
 import android.os.SystemClock
 import android.widget.Toast
-import com.google.firebase.FirebaseApp
 import com.hungrydevops.app.R
 import com.hungrydevops.app.base.BaseActivity
 import com.hungrydevops.app.databinding.ActivityMainBinding
@@ -21,7 +20,7 @@ class MainActivity : BaseActivity() {
     private var backPressedTime: Long = 0
 
     private var lastClickTime: Long = 0
-    private val throttleInterval: Long = 500
+    private val throttleInterval: Long = 300
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -47,10 +46,13 @@ class MainActivity : BaseActivity() {
         }
     }
     fun replaceFragment(fragment: androidx.fragment.app.Fragment){
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frameLayout,fragment)
-        fragmentTransaction.commit()
+        try{
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.frameLayout,fragment)
+            fragmentTransaction.commit()
+        }catch (e : Exception){}
+
     }
 
     override fun onBackPressed() {
@@ -61,4 +63,15 @@ class MainActivity : BaseActivity() {
             backPressedTime = System.currentTimeMillis()
         }
     }
+
+    fun openInterviewQuestion(){
+        binding.bottomNavigation.selectedItemId=R.id.bottom_interview_que
+    }
+    fun openQuiz(){
+        binding.bottomNavigation.selectedItemId=R.id.bottom_quiz
+    }
+    fun openProtips(){
+        binding.bottomNavigation.selectedItemId=R.id.bottom_pro_tips
+    }
+
 }

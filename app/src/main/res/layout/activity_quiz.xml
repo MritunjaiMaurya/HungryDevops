@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".activity.QuizActivity">
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="19dp"
+        android:src="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/img_clock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/clock"
+        android:layout_margin="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00\n16"
+        android:textSize="10sp"
+        android:gravity="center"
+        android:padding="1dp"
+        android:textColor="@color/secondary"
+        android:fontFamily="@font/medium"
+        app:layout_constraintTop_toTopOf="@+id/img_clock"
+        app:layout_constraintStart_toStartOf="@+id/img_clock"
+        app:layout_constraintEnd_toEndOf="@+id/img_clock"
+        app:layout_constraintBottom_toBottomOf="@+id/img_clock"
+        />
+
+    <TextView
+        android:id="@+id/tv_que_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/semibold"
+        android:padding="10dp"
+        android:text="Question 1/30"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/img_clock"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_previous"
+        app:layout_constraintTop_toBottomOf="@+id/img_clock">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_quiz_bg"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_purple"
+                android:backgroundTint="@color/secondary"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_bg"
+                android:elevation="10dp"
+                android:minHeight="180dp"
+                app:cardCornerRadius="30dp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/semibold"
+                        android:gravity="center"
+                        android:justificationMode="inter_word"
+                        android:lineSpacingExtra="0.2dp"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="10dp"
+                        android:text=" mya fkajkfja a kdjkajlkfja a kddjkfjksj ajka jkjkjfkaj aj kjfd akdkdfo joe fioe   ja ja ijaoiiodjioej ai iojei ija jij iiejio je  ijei ie  iioejijieiwija;eoifji wj jjfijwofjwi wijwjfiw  iojwiofjwijwijiowfijwi i ijiwj ifj iwjiifj jih fwijhf iwh iwihwfwi iow hiwfhiwjwfhiw fwif  fiwhfw hwhfiowh whiw hfhjhfihifihwf isjoifiowof jwjfjiwjfiow jfwiojfiwjfiwj fjwifjiwji   jfiwjfji"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <RadioGroup
+                android:id="@+id/btn_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/button_bg"
+                    android:backgroundTint="@color/secondary"
+                    android:button="@null"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/semibold"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="12dp"
+                    android:text="Prateek"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/button_bg"
+                    android:button="@null"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/semibold"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="12dp"
+                    android:text="Mrityunjai"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/button_bg"
+                    android:button="@null"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/semibold"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="12dp"
+                    android:text="Aman"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/button_bg"
+                    android:button="@null"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/semibold"
+                    android:justificationMode="inter_word"
+                    android:lineSpacingExtra="0.2dp"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="12dp"
+                    android:text="It gives me immense sense of pride as our dream of bringing quality school education par excellence comes true."
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/btn_previous"
+        android:layout_width="85dp"
+        android:layout_height="60dp"
+        android:layout_marginVertical="5dp"
+        android:elevation="10dp"
+        android:src="@drawable/right_round_rect"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/btn_next"
+        android:layout_width="85dp"
+        android:layout_height="60dp"
+        android:layout_marginVertical="5dp"
+        android:elevation="10dp"
+        android:src="@drawable/left_round_rect"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_previous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Previous"
+        android:textColor="@color/white"
+        android:fontFamily="@font/medium"
+        android:drawableStart="@drawable/ic_left_polygon"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_previous"
+        app:layout_constraintStart_toStartOf="@+id/btn_previous"
+        app:layout_constraintTop_toTopOf="@+id/btn_previous" />
+
+    <TextView
+        android:id="@+id/tv_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_right_polygon"
+        android:drawablePadding="5dp"
+        android:elevation="10dp"
+        android:fontFamily="@font/medium"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Next"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_next"
+        app:layout_constraintEnd_toEndOf="@+id/btn_next"
+        app:layout_constraintStart_toStartOf="@+id/btn_next"
+        app:layout_constraintTop_toTopOf="@+id/btn_next" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
