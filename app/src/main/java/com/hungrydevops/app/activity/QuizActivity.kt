@@ -1,18 +1,14 @@
 package com.hungrydevops.app.activity
 
-import android.content.Intent
-import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
-import android.widget.RadioButton
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.hungrydevops.app.R
+import com.hungrydevops.app.common.QuizManager
 import com.hungrydevops.app.databinding.ActivityQuizBinding
 
 
@@ -23,6 +19,7 @@ class QuizActivity : AppCompatActivity() {
     }
     private val quizQuestions= mutableListOf<Quiz>()
     private var currentQuestionIndex = 0
+    private var selectedOptionIndex = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -41,10 +38,8 @@ class QuizActivity : AppCompatActivity() {
         db.firestoreSettings = FirebaseFirestoreSettings.Builder()
             .setPersistenceEnabled(false)
             .build()
-        val questionsRef = db.collection("quiz")
 
-
-            questionsRef.whereEqualTo("topic", intent.getStringExtra("topic")).get()
+            db.collection("quiz").whereEqualTo("topic", intent.getStringExtra("topic")).get()
                 .addOnSuccessListener { querySnapshot ->
                     for (document in querySnapshot) {
                         val question = document.toObject(Quiz::class.java)
@@ -59,6 +54,16 @@ class QuizActivity : AppCompatActivity() {
         }
 
     private fun displayCurrentQuestion() {
+        val savedOption=QuizManager(this).getSelectedOption(currentQuestionIndex+1 )
+        binding.btnRadioGroup.check(
+            when(savedOption){
+                1-> R.id.option1
+                2-> R.id.option2
+                3-> R.id.option3
+                4-> R.id.option4
+                else -> -1
+            }
+        )
         val currentQuestion = quizQuestions.get(currentQuestionIndex)
         binding.tvQueNo.text="Question ${currentQuestionIndex+1}/${quizQuestions.size}"
         binding.tvQuestion.text=currentQuestion.question
@@ -67,44 +72,70 @@ class QuizActivity : AppCompatActivity() {
         binding.option3.setText(currentQuestion.options[2])
         binding.option4.setText(currentQuestion.options[3])
         binding.btnRadioGroup.setOnCheckedChangeListener(){_, checkedId ->
-            val selectedOption= findViewById<RadioButton>(checkedId)
+            when (checkedId) {
+                R.id.option1 -> {
+                    selectedOptionIndex=1
+                }
+                R.id.option2 -> {
+                    selectedOptionIndex=2
+                }
+                R.id.option3 -> {
+                    selectedOptionIndex=3
+                }
+                R.id.option4 -> {
+                    selectedOptionIndex=4
+                }
+            }
+            QuizManager(this).saveSelectedOption(currentQuestionIndex+1, selectedOptionIndex)
         }
-        binding.btnNext.setOnClickListener{
-            showNextQuestion()
+        if(currentQuestionIndex==0){
+        binding.btnPrevious.visibility= View.INVISIBLE
+        binding.tvPrevious.visibility=View.INVISIBLE
         }
-        binding.btnPrevious.setOnClickListener{
-            showPreviousQuestion()
+        else{
+            binding.btnPrevious.visibility= View.VISIBLE
+            binding.tvPrevious.visibility=View.VISIBLE
         }
-    }
-
-    private fun showNextQuestion() {
-        // Check if there are more questions
-        if (currentQuestionIndex < quizQuestions.size - 1) {
-            // Move to the next question
-            currentQuestionIndex++
-            // Display the new question
-            displayCurrentQuestion()
-        } else {
-            // This was the last question, handle accordingly
+        if(currentQuestionIndex==(quizQuestions.size-1)){
+            binding.btnNext.visibility= View.INVISIBLE
+            binding.tvNext.visibility=View.INVISIBLE
+        }
+        else{
+            binding.btnNext.visibility= View.VISIBLE
+            binding.tvNext.visibility=View.VISIBLE
+        }
+        binding.btnNext.setOnClickListener{ showNextQuestion() }
+        binding.btnPrevious.setOnClickListener{ showPreviousQuestion() }
+        binding.btnSubmit.setOnClickListener{
+            //dialog open
+            QuizManager(this).clearQuizState()
             showQuizResults()
         }
     }
 
-    private fun showPreviousQuestion() {
-        // Check if there are previous questions
-        if (currentQuestionIndex > 0) {
-            // Move to the previous question
-            currentQuestionIndex--
-            // Display the previous question
+    private fun showNextQuestion() {
+        if (currentQuestionIndex < quizQuestions.size - 1) {
+            currentQuestionIndex++
             displayCurrentQuestion()
-        } else {
-            // This is the first question, handle accordingly (optional)
-            // You might want to disable or hide the "Previous Question" button
+        }
+    }
+
+    private fun showPreviousQuestion() {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--
+            displayCurrentQuestion()
         }
     }
 
     private fun showQuizResults() {
 //        startActivity(Intent(this, ResultsActivity::class.java))
-//        finish() // Close this activity
+//        finish()
     }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        //dialog to be opened
+        QuizManager(this).clearQuizState()
     }
+}

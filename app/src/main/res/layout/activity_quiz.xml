@@ -204,6 +204,7 @@
         android:layout_height="60dp"
         android:layout_marginVertical="5dp"
         android:elevation="10dp"
+        android:visibility="invisible"
         android:src="@drawable/right_round_rect"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -227,6 +228,7 @@
         android:layout_height="wrap_content"
         android:text="Previous"
         android:textColor="@color/white"
+        android:visibility="invisible"
         android:fontFamily="@font/medium"
         android:drawableStart="@drawable/ic_left_polygon"
         android:drawablePadding="5dp"
@@ -253,6 +255,23 @@
         app:layout_constraintEnd_toEndOf="@+id/btn_next"
         app:layout_constraintStart_toStartOf="@+id/btn_next"
         app:layout_constraintTop_toTopOf="@+id/btn_next" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSubmit"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        app:cornerRadius="32dp"
+        android:text="Submit"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/semibold"
+        android:backgroundTint="@color/white"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/btn_next"
+        app:layout_constraintTop_toTopOf="@id/btn_next"
+        app:layout_constraintStart_toEndOf="@id/btn_previous"
+        app:layout_constraintEnd_toStartOf="@id/btn_next"
+        />
 
 
 

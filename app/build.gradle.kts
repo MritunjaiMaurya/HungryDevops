@@ -57,4 +57,6 @@ dependencies {
 //   firebase
     implementation("com.google.firebase:firebase-firestore-ktx:24.9.1")
     implementation("com.google.firebase:firebase-core:21.1.1")
+
+    implementation ("com.google.code.gson:gson:2.9.0")
 }
