@@ -90,6 +90,7 @@
         app:layout_constraintTop_toTopOf="@+id/card_view_2" />
 
     <TextView
+        android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
