@@ -11,6 +11,7 @@ import android.view.animation.TranslateAnimation
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.hungrydevops.app.common.DialogUtil
 
 open class BaseActivity : AppCompatActivity() {
     private var mProgressDialog: ProgressDialog? = null
@@ -26,6 +27,27 @@ open class BaseActivity : AppCompatActivity() {
             lastClickTime = SystemClock.elapsedRealtime()
             onSingleClick(it)
         }
+    }
+
+    fun saveSharedPreferences(img:String,name:String,email:String,dob:String,gender:String){
+        val sp=getSharedPreferences("Data",Context.MODE_PRIVATE)
+        val editor=sp.edit()
+        editor.putString("img",img)
+        editor.putString("full_name",name)
+        editor.putString("email",email)
+        editor.putString("dob", dob)
+        editor.putString("gender", gender)
+        editor.apply()
+    }
+
+    fun getSharedPreferences(data:String) : String{
+        val sp=getSharedPreferences("Data",Context.MODE_PRIVATE)
+        return sp.getString(data,"").toString()
+    }
+
+    fun showLoading() {
+        mProgressDialog = DialogUtil.showLoadingDialog(this@BaseActivity, "Base Activity")
+        mProgressDialog!!.setCancelable(true)
     }
 
     fun hideLoading() {

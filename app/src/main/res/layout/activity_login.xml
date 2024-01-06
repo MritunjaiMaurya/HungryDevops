@@ -2,36 +2,39 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="hidekeyboard"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraint"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primary"
-    tools:context=".activity.LoginActivity">
+    tools:context="activity.LoginActivity">
 
     <ImageView
-        android:id="@+id/viewa"
-        android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:id="@+id/img_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:src="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/tvHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginHorizontal="16dp"
         android:textSize="22sp"
         android:textColor="@color/white"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/semibold"
         android:text="Hello there 👋"
-        app:layout_constraintTop_toBottomOf="@+id/viewa"
+        app:layout_constraintTop_toBottomOf="@+id/img_back"
         />
 
     <TextView
         android:id="@+id/tvSubHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/satoshi_regular"
         android:text="Plase enter your Email id and Password."
@@ -43,7 +46,7 @@
     <View
         android:id="@+id/viewb"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="26dp"
         app:layout_constraintTop_toBottomOf="@+id/tvSubHeading"
         />
 
@@ -137,62 +140,60 @@
         app:layout_constraintTop_toTopOf="@id/view2"
         app:layout_constraintBottom_toBottomOf="@id/view2"/>
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/cbRememberMe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Remember me"
-        android:textSize="16sp"
-        android:fontFamily="@font/satoshi_medium"
-        android:textColor="@color/white"
-        app:buttonTint="@color/white"
-        android:layout_marginStart="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view2"/>
     <TextView
         android:id="@+id/tvForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forgot Password?"
-        android:textSize="16sp"
         android:fontFamily="@font/satoshi_medium"
-        android:textColor="@color/white"
-        android:layout_marginTop="20dp"
         android:padding="5dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="40dp"
+        android:text="Forgot Password?"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cbRememberMe"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
         />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn1"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        app:cornerRadius="32dp"
-        android:text="Sign in"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/semibold"
-        android:backgroundTint="@color/secondary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn2"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+    <TextView
+        android:id="@+id/tv_signin_with"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/satoshi_medium"
+        android:padding="15dp"
+        android:text="Continue with:"
         android:layout_marginBottom="20dp"
-        app:cornerRadius="32dp"
-        android:text="Sign in"
+        android:textColor="@color/white"
+        app:layout_constraintHorizontal_chainStyle="packed"
         android:textSize="16sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/semibold"
-        android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_signin"
+        app:layout_constraintEnd_toStartOf="@+id/img_google_auth"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_google_auth"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_google"
+        android:background="@drawable/google_btn_bg"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_signin_with"
+        app:layout_constraintStart_toEndOf="@id/tv_signin_with"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_signin_with"
         />
+
+    <FrameLayout
+        android:id="@+id/btn_signin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <include layout="@layout/layout_button"
+            android:id="@+id/btnn"/>
+
+    </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

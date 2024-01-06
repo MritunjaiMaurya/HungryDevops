@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
+import android.widget.Toast
 import com.hungrydevops.app.Adapter.ImageSlideAdapter
 import com.hungrydevops.app.ItemImageSlider
 import com.hungrydevops.app.R
@@ -17,6 +18,8 @@ class OnboardingActivity : BaseActivity() {
     val binding by lazy{
         ActivityOnboardingBinding.inflate(layoutInflater)
     }
+
+    private var backPressedTime: Long = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -41,5 +44,14 @@ class OnboardingActivity : BaseActivity() {
         }
 
         binding.tabLayout.setupWithViewPager(binding.viewPager)
+    }
+
+    override fun onBackPressed() {
+        if (System.currentTimeMillis() - backPressedTime < 2000) {
+            super.onBackPressed()
+        } else {
+            Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show()
+            backPressedTime = System.currentTimeMillis()
+        }
     }
 }

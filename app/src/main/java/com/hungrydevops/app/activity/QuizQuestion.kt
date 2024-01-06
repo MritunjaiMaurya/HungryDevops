@@ -1,7 +1,7 @@
 package com.hungrydevops.app.activity
 
-data class Quiz (
+data class Quiz(
 
     val question: String="",
-    val options: List<String> =emptyList(),
-    val answer: String="")
+    val option: List<String> =emptyList(),
+    val answer: String ="")

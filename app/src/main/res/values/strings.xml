@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Hungry Devops</string>
     <string name="you_can_resend_in_32_s">You can resend code in <font color="#FCC822">32</font> s</string>
+    <string name="default_web_client_id">1038030348839-smbsq6moce0gee9ehqkqvkcrt11mglgj.apps.googleusercontent.com</string>
 
     <style name="headingText" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:textColor">@color/white</item>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main"
+    android:background="@color/black"
+    tools:context="com.androidbuddy.activity.ProfileInfoActivity">
+
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back"
+        android:padding="19dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tv_edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:padding="19dp"
+        android:fontFamily="@font/semibold"
+        app:layout_constraintStart_toEndOf="@+id/img_back"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_edit_profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="-186dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_bg"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="20dp"
+                android:background="@drawable/ic_profile_ellipse"
+                app:layout_constraintEnd_toEndOf="@+id/constraint"
+                app:layout_constraintStart_toStartOf="@+id/constraint"
+                app:layout_constraintTop_toTopOf="@+id/constraint" />
+
+            <ImageView
+                android:id="@+id/img_avatar"
+                android:layout_width="99dp"
+                android:layout_height="99dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/avatar_1"
+                app:layout_constraintBottom_toBottomOf="@+id/img_bg"
+                app:layout_constraintEnd_toEndOf="@+id/img_bg"
+                app:layout_constraintStart_toStartOf="@+id/img_bg"
+                app:layout_constraintTop_toTopOf="@+id/img_bg" />
+
+            <ImageView
+                android:id="@+id/img_edit"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="7dp"
+                android:background="@drawable/ic_edit_bg"
+                android:src="@drawable/ic_edit"
+                app:layout_constraintBottom_toBottomOf="@+id/img_bg"
+                app:layout_constraintEnd_toEndOf="@+id/img_bg"
+                app:tint="@color/secondary" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                app:layout_constraintTop_toBottomOf="@+id/img_edit" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/filledTextField"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:enabled="false"
+                android:hint="Full Name"
+                android:textColorHint="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/view">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/filledTextField2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:enabled="false"
+                android:hint="Email"
+                android:textColorHint="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/filledTextField">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/filledTextField3"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="DOB"
+                android:enabled="false"
+                android:textColorHint="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/img_edit_dob"
+                app:layout_constraintTop_toBottomOf="@id/filledTextField2">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="YYYY-MM-DD"
+                    android:textColor="@color/white" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/img_edit_dob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="18dp"
+                android:src="@drawable/ic_edit"
+                app:tint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/filledTextField3" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/filledTextField4"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="Gender"
+                android:enabled="false"
+                android:textColorHint="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/img_edit_dob"
+                app:layout_constraintTop_toBottomOf="@id/filledTextField3">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/img_edit_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="18dp"
+                android:src="@drawable/ic_edit"
+                app:tint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/filledTextField4" />
+
+
+            <!--            <com.google.android.material.textfield.TextInputLayout-->
+            <!--                android:id="@+id/filledTextField2"-->
+            <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_margin="20dp"-->
+            <!--                android:hint="Email"-->
+            <!--                android:textColorHint="@color/white"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/filledTextField"-->
+            <!--                >-->
+            <!--                <com.google.android.material.textfield.TextInputEditText-->
+            <!--                    android:id="@+id/edit_text2"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="prateekrana10g@gmail.com"-->
+            <!--                    android:textColor="@color/white"-->
+            <!--                    android:drawableEnd="@drawable/ic_tv_edit"-->
+            <!--                    />-->
+
+            <!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+            <!--            <com.google.android.material.textfield.TextInputLayout-->
+            <!--                android:id="@+id/filledTextField3"-->
+            <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_margin="20dp"-->
+            <!--                android:hint="dob"-->
+            <!--                android:textColor="@color/white"-->
+            <!--                android:textColorHint="@color/white"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/filledTextField2"-->
+            <!--                >-->
+            <!--                <com.google.android.material.textfield.TextInputEditText-->
+            <!--                    android:id="@+id/edit_text3"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="23-05-2002"-->
+            <!--                    android:textColor="@color/white"-->
+            <!--                    android:drawableEnd="@drawable/ic_tv_edit"-->
+            <!--                    />-->
+
+            <!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+            <!--            <com.google.android.material.textfield.TextInputLayout-->
+            <!--                android:id="@+id/filledTextField4"-->
+            <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_margin="20dp"-->
+            <!--                android:hint="Gender"-->
+            <!--                app:boxStrokeColor="@color/primary"-->
+            <!--                app:boxStrokeWidth="1dp"-->
+            <!--                android:textColorHint="@color/white"-->
+            <!--                android:textColor="@color/white"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/filledTextField3"-->
+            <!--                >-->
+            <!--                <com.google.android.material.textfield.TextInputEditText-->
+            <!--                    android:id="@+id/edit_text4"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="Male"-->
+            <!--                    android:textColor="@color/white"-->
+            <!--                    android:drawableEnd="@drawable/ic_tv_edit"-->
+            <!--                    />-->
+
+            <!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

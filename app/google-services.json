@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1038030348839",
+    "firebase_url": "https://hungry-devops-default-rtdb.firebaseio.com",
     "project_id": "hungry-devops",
     "storage_bucket": "hungry-devops.appspot.com"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.hungrydevops.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1038030348839-i2i20cah0gtdu2tbm1a5hb6ej0ofkua3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hungrydevops.app",
+            "certificate_hash": "382922052972aa49dd7cc99855e6703b2412cd3f"
+          }
+        },
+        {
+          "client_id": "1038030348839-smbsq6moce0gee9ehqkqvkcrt11mglgj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBr5MT1fNk98i593zXcnMneA7sDOIVhjEY"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1038030348839-smbsq6moce0gee9ehqkqvkcrt11mglgj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

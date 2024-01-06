@@ -1,6 +1,10 @@
 package com.hungrydevops.app.activity
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +21,7 @@ class QuizActivity : AppCompatActivity() {
     val binding by lazy{
         ActivityQuizBinding.inflate(layoutInflater)
     }
+    private lateinit var countDownTimer: CountDownTimer
     private val quizQuestions= mutableListOf<Quiz>()
     private var currentQuestionIndex = 0
     private var selectedOptionIndex = -1
@@ -28,10 +33,15 @@ class QuizActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        binding.btnSubmit.setOnClickListener {
+            showQuizResults()
+        }
+
         getQuestions()
 
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun getQuestions():List<Quiz>{
 
         val db = Firebase.firestore
@@ -39,19 +49,47 @@ class QuizActivity : AppCompatActivity() {
             .setPersistenceEnabled(false)
             .build()
 
-            db.collection("quiz").whereEqualTo("topic", intent.getStringExtra("topic")).get()
-                .addOnSuccessListener { querySnapshot ->
-                    for (document in querySnapshot) {
-                        val question = document.toObject(Quiz::class.java)
-                        quizQuestions.add(question)
+        intent.getStringExtra("topic")?.let {topic->
+            db.collection("quiz").document(topic).get()
+                .addOnSuccessListener {
+                    val questionsList = it[topic] as? List<Map<String, Any>>
+                    questionsList?.forEach { questionData ->
+                        val question = questionData["question"] as? String ?: ""
+                        val answer = questionData["answer"] as? String ?: ""
+                        val options = (questionData["option"] as? List<*>)?.map { it.toString() } ?: emptyList()
+
+                        val quizQuestion = Quiz(question, options , answer)
+                        quizQuestions.add(quizQuestion)
                     }
+                    quizTimer(quizQuestions.size)
                     displayCurrentQuestion();
                 }
                 .addOnFailureListener { exception ->
                     Toast.makeText(this, "No Internet", Toast.LENGTH_SHORT).show()
                 }
+        }
         return quizQuestions;
         }
+
+    private fun quizTimer(size: Int) {
+        val sizeInSeconds = size * 60
+
+        countDownTimer = object : CountDownTimer((sizeInSeconds * 1000).toLong(), 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val secondsRemaining = millisUntilFinished / 1000
+                val minutes = secondsRemaining / 60
+                val seconds = secondsRemaining % 60
+                binding.tvTimer.text = String.format("%02d\n%02d", minutes, seconds)
+            }
+
+            override fun onFinish() {
+                binding.tvTimer.text = "00\n00"
+                showQuizResults()
+            }
+        }
+        countDownTimer.start()
+
+    }
 
     private fun displayCurrentQuestion() {
         val savedOption=QuizManager(this).getSelectedOption(currentQuestionIndex+1 )
@@ -67,11 +105,11 @@ class QuizActivity : AppCompatActivity() {
         val currentQuestion = quizQuestions.get(currentQuestionIndex)
         binding.tvQueNo.text="Question ${currentQuestionIndex+1}/${quizQuestions.size}"
         binding.tvQuestion.text=currentQuestion.question
-        binding.option1.setText(currentQuestion.options[0])
-        binding.option2.setText(currentQuestion.options[1])
-        binding.option3.setText(currentQuestion.options[2])
-        binding.option4.setText(currentQuestion.options[3])
-        binding.btnRadioGroup.setOnCheckedChangeListener(){_, checkedId ->
+        binding.option1.setText(currentQuestion.option[0])
+        binding.option2.setText(currentQuestion.option[1])
+        binding.option3.setText(currentQuestion.option[2])
+        binding.option4.setText(currentQuestion.option[3])
+        binding.btnRadioGroup.setOnCheckedChangeListener{_, checkedId ->
             when (checkedId) {
                 R.id.option1 -> {
                     selectedOptionIndex=1
@@ -106,11 +144,6 @@ class QuizActivity : AppCompatActivity() {
         }
         binding.btnNext.setOnClickListener{ showNextQuestion() }
         binding.btnPrevious.setOnClickListener{ showPreviousQuestion() }
-        binding.btnSubmit.setOnClickListener{
-            //dialog open
-            QuizManager(this).clearQuizState()
-            showQuizResults()
-        }
     }
 
     private fun showNextQuestion() {
@@ -127,15 +160,37 @@ class QuizActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun showQuizResults() {
-//        startActivity(Intent(this, ResultsActivity::class.java))
-//        finish()
+
+        countDownTimer.cancel()
+
+    val score = calculateScore()
+    val totalQuestions = quizQuestions.size
+
+    val intent = Intent(this, ResultsActivity::class.java)
+    intent.putExtra("score", score.toString())
+    intent.putExtra("totalQuestions", totalQuestions.toString())
+    startActivity(intent)
+    finish()
+        QuizManager(this).clearQuizState()
     }
+
+    private fun calculateScore(): Int {
+        var score = 0
+        quizQuestions.forEach {quiz->
+            val selected=QuizManager(this).getSelectedOption(quizQuestions.indexOf(quiz)+1)
+            if (quiz.answer==selected.toString()){
+                score++
+            }
+        }
+        return score
+    }
+
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         super.onBackPressed()
-        //dialog to be opened
         QuizManager(this).clearQuizState()
     }
 }

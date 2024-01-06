@@ -5,6 +5,8 @@ import android.app.ProgressDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import com.hungrydevops.app.R
 
 object DialogUtil {
@@ -12,7 +14,6 @@ object DialogUtil {
     private var progressDialog: ProgressDialog? = null
 
     fun showLoadingDialog(activity: Activity?, callingPlace: String): ProgressDialog? {
-        Log.d(TAG, "showLoadingDialog: $callingPlace")
         progressDialog = ProgressDialog(activity)
         progressDialog!!.show()
         if (progressDialog!!.window != null) {
@@ -21,7 +22,9 @@ object DialogUtil {
         progressDialog!!.setContentView(R.layout.progress_dialog)
         progressDialog!!.isIndeterminate = true
         progressDialog!!.setCancelable(true)
-        progressDialog!!.setCanceledOnTouchOutside(true)
+        progressDialog!!.setCanceledOnTouchOutside(false)
+        val animation= AnimationUtils.loadAnimation(activity,R.anim.rounding)
+        progressDialog!!.findViewById<ImageView>(R.id.img_rounding).startAnimation(animation)
         return progressDialog
     }
 

@@ -1,9 +1,6 @@
 package com.hungrydevops.app.fragment
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +10,10 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.hungrydevops.app.Adapter.QuizerCategoryAdapter
-import com.hungrydevops.app.R
-import com.hungrydevops.app.activity.QuizActivity
+import com.hungrydevops.app.base.BaseFragment
 import com.hungrydevops.app.databinding.FragmentQuizBinding
 
-class QuizFragment : Fragment() {
+class QuizFragment : BaseFragment() {
 
     private lateinit var binding : FragmentQuizBinding
     val subjectList = mutableListOf<String>()
@@ -28,9 +24,6 @@ class QuizFragment : Fragment() {
     ): View? {
         binding = FragmentQuizBinding.inflate(inflater, container, false)
 
-//        binding.tv.setOnClickListener {
-//            startActivity(Intent(context,QuizActivity::class.java))
-//        }
         getSubjects()
 
         return binding.root
@@ -43,6 +36,7 @@ class QuizFragment : Fragment() {
             .setPersistenceEnabled(false)
             .build()
 
+        showLoading()
         db.collection("quiz").document("Subject").get()
                 .addOnSuccessListener { querySnapshot ->
                     if (querySnapshot.exists()) {
@@ -51,10 +45,11 @@ class QuizFragment : Fragment() {
                         binding.rvQuizer.layoutManager = LinearLayoutManager(context)
                         val adapter= QuizerCategoryAdapter(requireContext(), subjectList)
                         binding.rvQuizer.adapter=adapter
-                    } else {
                     }
+                    hideLoading()
                 }
                 .addOnFailureListener { exception ->
+                    hideLoading()
                     Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT).show()
                 }
         }

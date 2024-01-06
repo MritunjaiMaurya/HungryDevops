@@ -2,6 +2,7 @@ package com.hungrydevops.app.common
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.google.gson.Gson
 
 class QuizManager(private val context: Context) {
@@ -16,6 +17,7 @@ class QuizManager(private val context: Context) {
 
     fun getSelectedOption(questionId: Int): Int {
         val questionKey = "question_$questionId"
+        Log.e("testt", "getSelectedOption: ${sharedPreferences.getInt(questionKey, -1)}", )
         return sharedPreferences.getInt(questionKey, -1)
     }
 
