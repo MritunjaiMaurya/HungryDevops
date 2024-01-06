@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".activity.QuizResultActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/bg_purple"
+        android:backgroundTint="@color/secondary"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/chooser2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="15dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="19dp"
+                android:src="@drawable/back2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/img_score_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:background="@drawable/ic_score_bg"
+                android:padding="19dp"
+                android:src="@drawable/ic_score_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_your_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/medium"
+                android:text="your Score"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="@+id/img_score_bg"
+                app:layout_constraintStart_toStartOf="@+id/img_score_bg"
+                app:layout_constraintTop_toTopOf="@+id/img_score_bg" />
+
+            <TextView
+                android:id="@+id/tv_points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/medium"
+                android:padding="10dp"
+                android:text="100pt"
+                android:textColor="@color/black"
+                android:textSize="42sp"
+                app:layout_constraintEnd_toEndOf="@+id/img_score_bg"
+                app:layout_constraintStart_toStartOf="@+id/img_score_bg"
+                app:layout_constraintTop_toBottomOf="@+id/tv_your_score" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="20dp"
+                android:elevation="10dp"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_score_bg"
+                >
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                    <TextView
+                        android:id="@+id/tv_completion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="Completion"
+                        android:drawableStart="@drawable/ic_completion_ellipse"
+                        android:drawablePadding="10dp"
+                        android:paddingHorizontal="20dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/medium"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_total_que"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_completion_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20"
+                        android:textColor="#A42FC1"
+                        android:paddingHorizontal="20dp"
+                        android:textSize="20sp"
+                        android:layout_marginEnd="20dp"
+                        android:fontFamily="@font/bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_completion"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_completion"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_total_que"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Question"
+                        android:textColor="@color/black"
+                        android:drawableStart="@drawable/ic_completion_ellipse"
+                        android:drawablePadding="10dp"
+                        android:textSize="18sp"
+                        android:paddingHorizontal="20dp"
+                        android:fontFamily="@font/medium"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_correct"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_completion"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_total_que_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20"
+                        android:textColor="#A42FC1"
+                        android:paddingHorizontal="20dp"
+                        android:textSize="20sp"
+                        android:layout_marginEnd="20dp"
+                        android:fontFamily="@font/bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_total_que"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_total_que"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_correct"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:drawableStart="@drawable/ic_correct_ellipse"
+                        android:drawablePadding="10dp"
+                        android:textColor="@color/black"
+                        android:paddingHorizontal="20dp"
+                        android:fontFamily="@font/medium"
+                        android:text="Correct"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_wrong"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_total_que"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_correct_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20"
+                        android:textColor="#1F8435"
+                        android:paddingHorizontal="20dp"
+                        android:textSize="20sp"
+                        android:layout_marginEnd="20dp"
+                        android:fontFamily="@font/bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_correct"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_correct"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_wrong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_wrong_ellipse"
+                        android:drawablePadding="10dp"
+                        android:fontFamily="@font/medium"
+                        android:textColor="@color/black"
+                        android:paddingHorizontal="20dp"
+                        android:text="Wrong"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_correct" />
+
+                    <TextView
+                        android:id="@+id/tv_wrong_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20"
+                        android:textColor="#FA3939"
+                        android:paddingHorizontal="20dp"
+                        android:textSize="20sp"
+                        android:layout_marginEnd="20dp"
+                        android:fontFamily="@font/bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_wrong"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_wrong"
+                        />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/chooser2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="20dp"
+        app:constraint_referenced_ids="img_home,img_reviewscore,img_playagain,img_sharescore,tv_home,tv_sharescore,tv_scorereview,tv_playagain"
+        app:flow_maxElementsWrap="4"
+        app:flow_horizontalGap="20dp"
+        app:flow_wrapMode="chain"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/img_home"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:padding="10dp"
+        android:src="@drawable/ic_home" />
+
+    <ImageView
+        android:id="@+id/img_reviewscore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:padding="10dp"
+        android:src="@drawable/ic_share_score" />
+
+    <ImageView
+        android:id="@+id/img_playagain"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:padding="10dp"
+        android:src="@drawable/ic_review_answer" />
+
+
+    <ImageView
+        android:id="@+id/img_sharescore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:padding="10dp"
+        android:src="@drawable/ic_playagain" />
+
+    <TextView
+        android:id="@+id/tv_home"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:textSize="10sp"
+        android:gravity="center"
+        android:fontFamily="@font/medium"
+        android:maxLines="1"
+        android:text="Home"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/tv_sharescore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:textSize="10sp"
+        android:fontFamily="@font/medium"
+        android:maxLines="1"
+        android:text="Share Score"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/tv_scorereview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:fontFamily="@font/medium"
+        android:maxLines="1"
+        android:textSize="10sp"
+        android:text="Review Score"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/tv_playagain"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:fontFamily="@font/medium"
+        android:maxLines="1"
+        android:text="Play Again"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

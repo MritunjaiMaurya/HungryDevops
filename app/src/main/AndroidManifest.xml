@@ -16,6 +16,9 @@
         android:theme="@style/Theme.HungryDevops"
         tools:targetApi="31">
         <activity
+            android:name=".activity.QuizResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ContentActivity"
             android:exported="false" />
         <activity
