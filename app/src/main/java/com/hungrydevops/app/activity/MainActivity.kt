@@ -1,7 +1,10 @@
 package com.hungrydevops.app.activity
 
+import android.content.Intent
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
-import android.os.SystemClock
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.hungrydevops.app.R
 import com.hungrydevops.app.base.BaseActivity
@@ -18,32 +21,37 @@ class MainActivity : BaseActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
     private var backPressedTime: Long = 0
-
-    private var lastClickTime: Long = 0
-    private val throttleInterval: Long = 300
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         replaceFragment(MainFragment())
 
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            val currentClickTime = SystemClock.elapsedRealtime()
-            if (currentClickTime - lastClickTime < throttleInterval) {
-                return@setOnItemSelectedListener false
-            }
-            lastClickTime = currentClickTime
-
+        binding.bottomNavigation.setOnSingleNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.bottom_home -> replaceFragment(MainFragment())
                 R.id.bottom_interview_que -> replaceFragment(InterviewQuestionFragment())
                 R.id.bottom_quiz -> replaceFragment(QuizFragment())
                 R.id.bottom_pro_tips -> replaceFragment(ProTipsFragment())
                 R.id.bottom_profile -> replaceFragment(ProfileFragment())
-                else -> return@setOnItemSelectedListener false
+                else -> {}
             }
             true
         }
+        val a = AnimationUtils.loadAnimation(this, R.anim.blink)
+        a.reset()
+        binding.tvVisitWebsite.clearAnimation()
+        binding.tvVisitWebsite.startAnimation(a)
+
+        binding.tvVisitWebsite.setSingleClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("https://hungrydevops.com/")
+            try{
+                startActivity(intent)
+            } catch(e:Exception){
+                Toast.makeText(this,"Download any browser to open website",Toast.LENGTH_SHORT).show()
+            } }
+
     }
     fun replaceFragment(fragment: androidx.fragment.app.Fragment){
         try{
@@ -63,15 +71,8 @@ class MainActivity : BaseActivity() {
             backPressedTime = System.currentTimeMillis()
         }
     }
-
-    fun openInterviewQuestion(){
-        binding.bottomNavigation.selectedItemId=R.id.bottom_interview_que
-    }
     fun openQuiz(){
         binding.bottomNavigation.selectedItemId=R.id.bottom_quiz
-    }
-    fun openProtips(){
-        binding.bottomNavigation.selectedItemId=R.id.bottom_pro_tips
     }
 
 }

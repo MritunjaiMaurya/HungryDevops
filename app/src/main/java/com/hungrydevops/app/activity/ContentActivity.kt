@@ -24,7 +24,7 @@ class ContentActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.tvHeading.text=intent.getStringExtra("value")
+        binding.tvHeading.text= intent.getStringExtra("value")?.trim() ?:""
 
         binding.imgBack.setOnClickListener{finish()}
 
@@ -34,31 +34,29 @@ class ContentActivity : BaseActivity() {
     }
 
     private fun getURL() {
-        val collection= intent.getStringExtra("collection")
+        val collection= intent.getStringExtra("collection")?.trim()?:""
+        val value= intent.getStringExtra("value")?.trim()?:""
         val db = Firebase.firestore
         db.firestoreSettings = FirebaseFirestoreSettings.Builder()
             .setPersistenceEnabled(false)
             .build()
         showLoading()
-        intent.getStringExtra("value")?.let {
-            if (collection != null) {
-                db.collection(collection).document(it).get()
-                    .addOnSuccessListener {
-                        try {
-                            val description = it.get("description").toString()
-                            val pdfURL=it.get("pdfURL").toString()
-                            binding.tvDesc.text= Html.fromHtml(description)
-                            displayPDF(pdfURL)
-                        } catch (e:Exception){  Toast.makeText(this@ContentActivity,"Some error found",Toast.LENGTH_SHORT).show()}
-                        hideLoading()
-                    }
-                    .addOnFailureListener { exception ->
-                        hideLoading()
-                        Toast.makeText(this@ContentActivity, "No Internet", Toast.LENGTH_SHORT).show()
-                    }
+        db.collection(collection.trim()).document(value.trim()).get()
+            .addOnSuccessListener {
+                try {
+//                    val description = it.get("description").toString()
+//                    binding.tvDesc.text= Html.fromHtml(description)
+                    val pdfURL=it.get("pdfURL").toString()
+                    displayPDF(pdfURL)
+                } catch (e:Exception){
+                    Toast.makeText(this@ContentActivity,"Some error found",Toast.LENGTH_SHORT).show()}
+                hideLoading()
+            }
+            .addOnFailureListener { exception ->
+                hideLoading()
+                Toast.makeText(this@ContentActivity, "No Internet", Toast.LENGTH_SHORT).show()
             }
         }
-    }
 
     private fun displayPDF(pdfURL: String) {
         val  storage= FirebaseStorage.getInstance()

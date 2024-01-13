@@ -23,8 +23,6 @@ class AboutUsActivity : BaseActivity() {
             finish()
         }
 
-        binding.tvHeading.text=intent.getStringExtra("value")
-
         getContent()
 
 
@@ -35,8 +33,7 @@ class AboutUsActivity : BaseActivity() {
         val db= Firebase.firestore
         db.firestoreSettings= FirebaseFirestoreSettings.Builder().setPersistenceEnabled(false).build()
 
-        intent.getStringExtra("value")?.let {
-            db.collection("hungrydevopscms").document(it).get()
+            db.collection("quiz").document("aboutuscms").get()
                 .addOnSuccessListener { querySnapshot ->
                     if (querySnapshot.exists()) {
                         val data = querySnapshot.data
@@ -51,4 +48,3 @@ class AboutUsActivity : BaseActivity() {
                     Toast.makeText(this,"No Internet", Toast.LENGTH_SHORT).show() }
         }
     }
-}

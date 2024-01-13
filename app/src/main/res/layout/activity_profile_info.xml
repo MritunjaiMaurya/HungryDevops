@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/main"
     android:background="@color/black"
-    tools:context="com.androidbuddy.activity.ProfileInfoActivity">
+    tools:context=".activity.ProfileInfoActivity">
 
     <ImageView
         android:id="@+id/img_back"
@@ -74,7 +74,7 @@
                 android:src="@drawable/ic_edit"
                 app:layout_constraintBottom_toBottomOf="@+id/img_bg"
                 app:layout_constraintEnd_toEndOf="@+id/img_bg"
-                app:tint="@color/secondary" />
+                app:tint="@color/primary" />
 
             <View
                 android:id="@+id/view"

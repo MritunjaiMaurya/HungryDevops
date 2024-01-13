@@ -5,12 +5,14 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Looper
 import android.os.SystemClock
+import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.animation.TranslateAnimation
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hungrydevops.app.common.DialogUtil
 
 open class BaseActivity : AppCompatActivity() {
@@ -26,6 +28,19 @@ open class BaseActivity : AppCompatActivity() {
             if (SystemClock.elapsedRealtime() - lastClickTime < interval) return@setOnClickListener
             lastClickTime = SystemClock.elapsedRealtime()
             onSingleClick(it)
+        }
+    }
+
+    fun BottomNavigationView.setOnSingleNavigationItemSelectedListener(onClick: (MenuItem) -> Unit) {
+        var lastClickTime = 0L
+        val clickInterval = 1000L
+        setOnNavigationItemSelectedListener { menuItem ->
+            val currentTime = System.currentTimeMillis()
+            if (currentTime - lastClickTime > clickInterval) {
+                lastClickTime = currentTime
+                onClick(menuItem)
+            }
+            true
         }
     }
 

@@ -25,9 +25,11 @@ class QuizActivity : AppCompatActivity() {
     private val quizQuestions= mutableListOf<Quiz>()
     private var currentQuestionIndex = 0
     private var selectedOptionIndex = -1
+    var topic=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        topic= intent.getStringExtra("topic").toString()
 
         binding.btnBack.setOnClickListener {
             onBackPressed()
@@ -49,25 +51,33 @@ class QuizActivity : AppCompatActivity() {
             .setPersistenceEnabled(false)
             .build()
 
-        intent.getStringExtra("topic")?.let {topic->
             db.collection("quiz").document(topic).get()
                 .addOnSuccessListener {
-                    val questionsList = it[topic] as? List<Map<String, Any>>
-                    questionsList?.forEach { questionData ->
-                        val question = questionData["question"] as? String ?: ""
-                        val answer = questionData["answer"] as? String ?: ""
-                        val options = (questionData["option"] as? List<*>)?.map { it.toString() } ?: emptyList()
+                    if(it.exists()) {
+                        try {
+                            val questionsList = it[topic] as? List<Map<String, Any>>
+                            questionsList?.forEach { questionData ->
+                                val question = questionData["question"] as? String ?: ""
+                                val answer = questionData["answer"] as? String ?: ""
+                                val options =
+                                    (questionData["option"] as? List<*>)?.map { it.toString() }
+                                        ?: emptyList()
 
-                        val quizQuestion = Quiz(question, options , answer)
-                        quizQuestions.add(quizQuestion)
+                                val quizQuestion = Quiz(question, options, answer)
+                                quizQuestions.add(quizQuestion)
+                            }
+                            quizTimer(quizQuestions.size)
+                            displayCurrentQuestion();
+                        }
+                        catch(e:Exception){Toast.makeText(this, "No questions available. Visit later", Toast.LENGTH_SHORT).show()
+                        finish()}
                     }
-                    quizTimer(quizQuestions.size)
-                    displayCurrentQuestion();
+                    else{Toast.makeText(this, "No questions available. Visit later", Toast.LENGTH_SHORT).show()
+                    finish()}
                 }
                 .addOnFailureListener { exception ->
                     Toast.makeText(this, "No Internet", Toast.LENGTH_SHORT).show()
                 }
-        }
         return quizQuestions;
         }
 
@@ -163,17 +173,22 @@ class QuizActivity : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
     private fun showQuizResults() {
 
-        countDownTimer.cancel()
+        try {
+            countDownTimer.cancel()
+            val score = calculateScore()
+            val totalQuestions = quizQuestions.size
 
-    val score = calculateScore()
-    val totalQuestions = quizQuestions.size
-
-    val intent = Intent(this, ResultsActivity::class.java)
-    intent.putExtra("score", score.toString())
-    intent.putExtra("totalQuestions", totalQuestions.toString())
-    startActivity(intent)
-    finish()
-        QuizManager(this).clearQuizState()
+            val intent = Intent(this, QuizResultActivity::class.java)
+            intent.putExtra("score", score.toString())
+            intent.putExtra("totalQuestions", totalQuestions.toString())
+            intent.putExtra("topic", topic)
+            startActivity(intent)
+            finish()
+            QuizManager(this).clearQuizState()
+        }
+        catch (e:Exception){
+            finish()
+        }
     }
 
     private fun calculateScore(): Int {
@@ -191,6 +206,7 @@ class QuizActivity : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         super.onBackPressed()
+        countDownTimer.cancel()
         QuizManager(this).clearQuizState()
     }
 }

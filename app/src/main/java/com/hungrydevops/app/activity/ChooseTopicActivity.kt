@@ -1,5 +1,6 @@
 package com.hungrydevops.app.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,7 +17,7 @@ import com.hungrydevops.app.databinding.ActivityChooseTopicBinding
 
 class ChooseTopicActivity : BaseActivity() {
 
-    val binding by lazy{
+    val binding by lazy {
         ActivityChooseTopicBinding.inflate(layoutInflater)
     }
     val topicList = mutableListOf<String>()
@@ -28,11 +29,13 @@ class ChooseTopicActivity : BaseActivity() {
             onBackPressed()
         }
 
-        binding.rvTopicCategory.layoutManager=GridLayoutManager(this,2)
+        binding.rvTopicCategory.layoutManager = GridLayoutManager(this, 2)
         getTopics()
 
     }
-    private fun getTopics(){
+
+    @SuppressLint("SuspiciousIndentation")
+    private fun getTopics() {
 
         val db = Firebase.firestore
         db.firestoreSettings = FirebaseFirestoreSettings.Builder()
@@ -40,20 +43,26 @@ class ChooseTopicActivity : BaseActivity() {
             .build()
         val questionsRef = db.collection("quiz")
 
-        intent.getStringExtra("topic")?.let {
-            questionsRef.document(it).get()
-            .addOnSuccessListener { querySnapshot ->
-                if (querySnapshot.exists()) {
-                    val data = querySnapshot.data?.get("topic")
-                    topicList.addAll(data as Collection<String>)
-                    val adapter= TopicWiseAdapter(this, topicList)
-                    binding.rvTopicCategory.adapter=adapter
-                } else {
+        val topic = intent.getStringExtra("topic") ?: ""
+
+        binding.title.text=topic
+
+        try {
+            questionsRef.document(topic).get()
+                .addOnSuccessListener { querySnapshot ->
+                    if (querySnapshot.exists()) {
+                        val data = querySnapshot.data?.get("topic")
+                        topicList.addAll(data as Collection<String>)
+                        val adapter = TopicWiseAdapter(this, topicList, topic)
+                        binding.rvTopicCategory.adapter = adapter
+                    } else {
+                    }
                 }
-            }
-            .addOnFailureListener { exception ->
-                Toast.makeText(this, "No Internet", Toast.LENGTH_SHORT).show()
-            }
+                .addOnFailureListener { exception ->
+                    Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show()
+                }
+        } catch (e:Exception){
+            Toast.makeText(this, "No Internet", Toast.LENGTH_SHORT).show()
         }
     }
 }

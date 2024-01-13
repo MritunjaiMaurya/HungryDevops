@@ -1,5 +1,6 @@
 package com.hungrydevops.app.fragment
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,10 +17,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.hungrydevops.app.Adapter.HandsonReceipeAdapter
-import com.hungrydevops.app.Adapter.InterviewQueAdapter
-import com.hungrydevops.app.Adapter.ProTipsAdapter
 import com.hungrydevops.app.Adapter.QuizAdapter
-import com.hungrydevops.app.Adapter.QuizerCategoryAdapter
+import com.hungrydevops.app.activity.HandsonActivity
 import com.hungrydevops.app.activity.MainActivity
 import com.hungrydevops.app.base.BaseFragment
 import com.hungrydevops.app.databinding.FragmentMainBinding
@@ -28,7 +27,7 @@ class MainFragment : BaseFragment() {
 
     private lateinit var binding : FragmentMainBinding
     private lateinit var quizAdapter: QuizAdapter
-    private lateinit var handsonAdapter: QuizAdapter
+    private lateinit var handsonAdapter: HandsonReceipeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,9 +44,13 @@ class MainFragment : BaseFragment() {
 
 //        home fragment
         binding.rvHandsonReceipe.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        val adapters = HandsonReceipeAdapter(requireContext())
-        binding.rvHandsonReceipe.adapter=adapters
+        handsonAdapter = HandsonReceipeAdapter(requireContext())
+        binding.rvHandsonReceipe.adapter=handsonAdapter
+        binding.tvShowAll1.setOnClickListener {
+            startActivity(Intent(context,HandsonActivity::class.java))
+        }
 
+        getHandson()
 
 //        quiz fragment
         binding.rvQuiz.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -65,7 +68,6 @@ class MainFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-
         binding.tvWelcome.setText("Welcome "+"${getSharedPreferences("full_name")}"+" 👋")
     }
 
@@ -76,23 +78,52 @@ class MainFragment : BaseFragment() {
             .setPersistenceEnabled(false)
             .build()
 
+        binding.shimmerLayout1.startShimmer()
+        binding.shimmerLayout2.startShimmer()
+
         showLoading()
         db.collection("quiz").document("topquiz").get()
             .addOnSuccessListener { querySnapshot ->
                 if (querySnapshot.exists()) {
-                    val subjectList= mutableListOf<String>()
-                    val data = querySnapshot.data?.get("topquiz")
-
-                    if (data is Collection<*>) {
-                        val limitedList = data.filterIsInstance<String>().take(5)
-                        subjectList.addAll(limitedList)
-                        quizAdapter.addItems(subjectList)
+                    val subjectList= mutableListOf<Pair<String,String>>()
+                    val data = querySnapshot.data?.get("topquiz") as Map<String,String>
+                    data.forEach { s, s2 ->
+                        subjectList.add(Pair(s,s2))
                     }
+                        quizAdapter.addItems(subjectList)
+                    binding.shimmerLayout1.stopShimmer()
+                    binding.shimmerLayout1.visibility=View.INVISIBLE
+                    binding.shimmerLayout2.stopShimmer()
+                    binding.shimmerLayout2.visibility=View.INVISIBLE
                     hideLoading()
                 }
             }
             .addOnFailureListener { exception ->
                 hideLoading()
+                Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT).show()
+            }
+    }
+    private fun getHandson(){
+
+        val db = Firebase.firestore
+        db.firestoreSettings = FirebaseFirestoreSettings.Builder()
+            .setPersistenceEnabled(false)
+            .build()
+
+        db.collection("quiz").document("tophandson").get()
+            .addOnSuccessListener { querySnapshot ->
+                if (querySnapshot.exists()) {
+                    val subjectList= mutableListOf<String>()
+                    val data = querySnapshot.data?.get("tophandson")
+
+                    if (data is Collection<*>) {
+                        val limitedList = data.filterIsInstance<String>().take(5)
+                        subjectList.addAll(limitedList)
+                        handsonAdapter.addItems(subjectList)
+                    }
+                }
+            }
+            .addOnFailureListener { exception ->
                 Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT).show()
             }
     }

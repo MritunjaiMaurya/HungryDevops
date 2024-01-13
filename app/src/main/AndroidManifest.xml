@@ -19,6 +19,9 @@
             android:name=".activity.QuizResultActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.HandsonActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ContentActivity"
             android:exported="false" />
         <activity

@@ -43,11 +43,9 @@ class SplashActivity:BaseActivity(){
         binding.imgSplash.startAnimation(animation)
 
 
-        Handler().postDelayed({startActivity(Intent(this, OnboardingActivity::class.java))
-        finish()
-        },3000)
-
         abc()
+
+
 
     }
 

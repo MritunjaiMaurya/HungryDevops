@@ -16,6 +16,8 @@ class ResultsActivity:AppCompatActivity() {
         binding.tvScore.text="Total Score: ${intent.getStringExtra("score")}"
 
 
+
+
     }
 
 }

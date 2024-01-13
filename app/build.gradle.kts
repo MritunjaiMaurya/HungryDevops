@@ -14,7 +14,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -74,6 +73,7 @@ dependencies {
     //firebase storage
     implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
     implementation("com.google.firebase:firebase-storage")
+    implementation ("com.facebook.shimmer:shimmer:0.5.0")
 
 
 //    image slider

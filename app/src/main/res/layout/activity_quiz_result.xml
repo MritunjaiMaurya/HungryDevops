@@ -50,8 +50,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
                 android:fontFamily="@font/medium"
-                android:text="your Score"
-                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="Your Score"
+                android:textColor="@color/primary"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="@+id/img_score_bg"
                 app:layout_constraintStart_toStartOf="@+id/img_score_bg"
@@ -63,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/medium"
                 android:padding="10dp"
-                android:text="100pt"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="42sp"
                 app:layout_constraintEnd_toEndOf="@+id/img_score_bg"
@@ -103,7 +104,7 @@
                         android:id="@+id/tv_completion_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="20"
+                        android:text=""
                         android:textColor="#A42FC1"
                         android:paddingHorizontal="20dp"
                         android:textSize="20sp"
@@ -134,7 +135,7 @@
                         android:id="@+id/tv_total_que_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="20"
+                        android:text=""
                         android:textColor="#A42FC1"
                         android:paddingHorizontal="20dp"
                         android:textSize="20sp"
@@ -165,7 +166,7 @@
                         android:id="@+id/tv_correct_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="20"
+                        android:text=""
                         android:textColor="#1F8435"
                         android:paddingHorizontal="20dp"
                         android:textSize="20sp"
@@ -195,7 +196,7 @@
                         android:id="@+id/tv_wrong_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="20"
+                        android:text=""
                         android:textColor="#FA3939"
                         android:paddingHorizontal="20dp"
                         android:textSize="20sp"
@@ -221,7 +222,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="20dp"
         android:paddingBottom="20dp"
-        app:constraint_referenced_ids="img_home,img_reviewscore,img_playagain,img_sharescore,tv_home,tv_sharescore,tv_scorereview,tv_playagain"
+        app:constraint_referenced_ids="img_home,img_shareScore,img_seeAnswers,img_playAgain,tv_home,tv_sharescore,tv_scorereview,tv_playagain"
         app:flow_maxElementsWrap="4"
         app:flow_horizontalGap="20dp"
         app:flow_wrapMode="chain"
@@ -237,7 +238,7 @@
         android:src="@drawable/ic_home" />
 
     <ImageView
-        android:id="@+id/img_reviewscore"
+        android:id="@+id/img_shareScore"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -245,7 +246,7 @@
         android:src="@drawable/ic_share_score" />
 
     <ImageView
-        android:id="@+id/img_playagain"
+        android:id="@+id/img_seeAnswers"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -254,7 +255,7 @@
 
 
     <ImageView
-        android:id="@+id/img_sharescore"
+        android:id="@+id/img_playAgain"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -270,7 +271,7 @@
         android:gravity="center"
         android:fontFamily="@font/medium"
         android:maxLines="1"
-        android:text="Home"
+        android:text="Play more"
         android:textColor="@color/white" />
 
     <TextView
@@ -294,7 +295,7 @@
         android:fontFamily="@font/medium"
         android:maxLines="1"
         android:textSize="10sp"
-        android:text="Review Score"
+        android:text="See Answers"
         android:textColor="@color/white"
         />
 

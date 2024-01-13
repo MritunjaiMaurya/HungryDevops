@@ -15,6 +15,15 @@
     <color name="docker">#0db7ed</color>
     <color name="ubuntu">#e95420</color>
     <color name="grass_green">#009A17</color>
+    <color name="handson">#5EA3E9</color>
+    <color name="chef">#f08921</color>
+    <color name="puppet">#7C64A5</color>
+    <color name="git">#f05133</color>
+    <color name="aws">#f90</color>
+    <color name="kubernetes">#326ce5</color>
+    <color name="cicd">#00bff3</color>
+    <color name="other">#27f6c6</color>
+    <color name="shimmerColor">#C2C2C2</color>
 
 
 </resources>
