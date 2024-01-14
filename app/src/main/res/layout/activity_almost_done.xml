@@ -83,7 +83,7 @@
     <EditText
         android:id="@+id/edt_email"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="44dp"
         android:paddingHorizontal="20dp"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -120,7 +120,7 @@
     <EditText
         android:id="@+id/edtPassword"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="44dp"
         android:inputType="textPassword"
         android:hint="Password"
         android:backgroundTint="@color/darkgray"
@@ -170,7 +170,7 @@
     <EditText
         android:id="@+id/edtPassword2"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="44dp"
         android:inputType="textPassword"
         android:hint="Password"
         android:backgroundTint="@color/darkgray"

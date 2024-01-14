@@ -36,10 +36,10 @@ class OnboardingActivity : BaseActivity() {
         binding.viewPager.adapter = viewPagerAdapter
         viewPagerAdapter.autoslide(binding.viewPager)
 
-        binding.btnSignIn.setSingleClickListener {
+        binding.btn2.setSingleClickListener {
             startActivity(Intent(this@OnboardingActivity, LoginActivity::class.java))
         }
-        binding.btnSignup.setSingleClickListener {
+        binding.btn4.setSingleClickListener {
             startActivity(Intent(this@OnboardingActivity, CreateAccountActivity::class.java))
         }
 
